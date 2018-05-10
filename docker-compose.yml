@@ -1,36 +1,20 @@
 version: '3'
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx.dockerfile
-    depends_on:
-      - mongo
-      - server
-    links:
-      - mongo
-      - server
-    ports:
-      - "80:80"
   mongo:
     image: mongo:latest
     volumes:
     - ./db/prod:/data/db
-    ports:
-    - "27017:27017"
   server:
-    build:
-      context: .
-      dockerfile: server-prod.dockerfile
-    working_dir: /var/www
+    build: ./server/
     ports:
-     - "3333:3333"
+     - "80:80"
     environment:
-     - MONGODB_URI=mongodb://mongo:27017/explorer
+     - MONGODB_URI=mongodb://mongo:27017/binkabi
+     - mnemonic="act output engage farm obscure name rubber fuel under voice glove mandate"
+     - network="https://core.tomocoin.io"
+    volumes:
+      - ./server/logs:/root/.npm/
     links:
      - mongo
     depends_on:
      - mongo
-    volumes:
-     - ./server:/var/www
-     - /var/www/node_modules
