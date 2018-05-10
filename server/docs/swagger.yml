@@ -23,10 +23,12 @@ paths:
                   in: formData
                   description: Email of member
                   required: true
+                  type: string
                 - name: walletAddress
                   in: formData
                   description: Wallet address of member
                   required: true
+                  type: string
 
             responses:
                 200:
@@ -48,6 +50,7 @@ paths:
                   in: query
                   description: Wallet address of member
                   required: true
+                  type: string
             responses:
                 200:
                     description: OK
@@ -64,6 +67,7 @@ paths:
                   in: query
                   description: Wallet address of member
                   required: true
+                  type: string
             responses:
                 200:
                     description: OK
@@ -81,10 +85,12 @@ paths:
                   in: formData
                   description: Wallet address of member
                   required: true
+                  type: string
                 - name: amount
                   in: formData
                   description: Amount token withdrawal
                   required: true
+                  type: float
             responses:
                 200:
                     description: OK
