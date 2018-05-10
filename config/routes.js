@@ -24,7 +24,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/':                                    {view: 'pages/homepage'},
+  'POST /membership/register':         { action: 'Membership/register' },
+  'GET /membership/checkMember':     { action: 'Membership/checkMember' },
+  'GET /membership/getBalance':     { action: 'Membership/getBalance' },
+  'POST /membership/withdrawal':     { action: 'Membership/withdrawal' },
+
 
   /***************************************************************************
   *                                                                          *
