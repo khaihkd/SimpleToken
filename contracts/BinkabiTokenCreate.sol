@@ -10,9 +10,15 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     address public tokenSaleAddress;
     address public tokenEscrowAddress;
     address public tokenVotingAddress;
+    address public tokenMembershipAddress;
     address public binkabiDepositAddress; // MultiSigWallet
 
     uint256 public constant binkabiDeposit = 100000000 * 10 ** decimals;
+
+    event TokenEscrow(address _buyer_seller, uint256 _amount, bool _isArbiterReceiver);
+    event TokenBonus(address _member, uint256 _amount);
+    event TokenPunish(address _member, uint256 _amount);
+    event MembershipWithdrawal(address _member, uint256 _amount);
 
     constructor(address _binkabiDepositAddress) public {
         binkabiDepositAddress = _binkabiDepositAddress;
@@ -22,11 +28,11 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
         totalSupply_ = binkabiDeposit;
     }    
 
-    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool success) {
+    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {
         return super.transfer(_to, _value);
     }
 
-    function approve(address _spender, uint256 _value) public whenNotPaused returns (bool success) {
+    function approve(address _spender, uint256 _value) public whenNotPaused returns (bool) {
         return super.approve(_spender, _value);
     }
 
@@ -42,7 +48,7 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     }
 
     // This function is only called by Token Sale Smart Contract
-    function mint(address _recipient, uint256 _value) public whenNotPaused returns (bool success) {
+    function mint(address _recipient, uint256 _value) public whenNotPaused returns (bool) {
         require(_value > 0);
         require(msg.sender == tokenSaleAddress);
 
@@ -61,17 +67,17 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     }
     
     // This function is only called by Token escrow Smart Contract
-    function escrow(address buyer_seller, uint256 _amount, bool isArbiterReceiver) public whenNotPaused returns (bool success) {
+    function escrow(address _buyer_seller, uint256 _amount, bool _isArbiterReceiver) public whenNotPaused returns (bool) {
         require(_amount > 0);
         require(msg.sender == tokenEscrowAddress);
 
         address receiver;
         address sender;
-        if (isArbiterReceiver){
+        if (_isArbiterReceiver){
             receiver = tokenEscrowAddress;
-            sender = buyer_seller;
+            sender = _buyer_seller;
         } else {
-            receiver = buyer_seller;
+            receiver = _buyer_seller;
             sender = tokenEscrowAddress;            
         }
 
@@ -82,7 +88,7 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
         balances[sender] = balances[sender].sub(_amount);
         balances[receiver] = balances[receiver].add(_amount);
 
-        emit Transfer(sender, receiver, _amount);
+        emit TokenEscrow(_buyer_seller, _amount, _isArbiterReceiver);
         return true;
     }
 
@@ -94,27 +100,41 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     }
     
     // This function is only called by Token voting Smart Contract
-    function bonusMember(address _voter, uint256 _amount) public whenNotPaused returns (bool success) {
+    function bonusMember(address _voter, uint256 _amount) public whenNotPaused {
         require(_amount > 0);
         require(msg.sender == tokenVotingAddress);
         
         balances[tokenVotingAddress] = balances[tokenVotingAddress].sub(_amount);
         balances[_voter] = balances[_voter].add(_amount);
 
-        emit Transfer(tokenVotingAddress, _voter, _amount);
-        return true;
+        emit TokenBonus(_voter, _amount);
     }
     
     // This function is called by Token voting & escrow Smart Contract
-    function punishMember(address _person, uint256 _amount) public whenNotPaused returns (bool success) {
+    function punishMember(address _person, uint256 _amount) public whenNotPaused {
         require(_amount > 0);
         require(msg.sender == tokenVotingAddress || msg.sender == tokenEscrowAddress);
         
         balances[tokenVotingAddress] = balances[tokenVotingAddress].sub(_amount);
         balances[_person] = balances[_person].add(_amount);
 
-        emit Transfer(tokenVotingAddress, _person, _amount);
-        return true;
+        emit TokenPunish(_person, _amount);
+    }
+
+    
+
+    // Setup Token Membership Smart Contract
+    function setTokenMembershipAddress(address _tokenMembershipAddress) public onlyOwner {
+        if (_tokenMembershipAddress != address(0)) {
+            tokenMembershipAddress = _tokenMembershipAddress;
+        }
+    }
+    
+    // This function is only called by Token Membership Smart Contract
+    function withdrawal(address _member, uint256 _amount) whenNotPaused public {
+        balances[msg.sender].sub(_amount);
+        balances[_member].add(_amount);
+        emit MembershipWithdrawal(_member, _amount);
     }
 
 }
