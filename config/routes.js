@@ -29,6 +29,7 @@ module.exports.routes = {
   'GET /membership/getBalance':     { action: 'Membership/getBalance' },
   'POST /membership/withdrawal':     { action: 'Membership/withdrawal' },
 
+  'GET /swagger/docs': {action: 'Swagger/docs'},
 
   /***************************************************************************
   *                                                                          *

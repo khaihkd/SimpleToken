@@ -1,0 +1,94 @@
+swagger: '2.0'
+info:
+    title: User API
+    description: Happy to code User API
+    version: '1.0.0'
+schemes:
+    - http
+basePath: /
+produces:
+    - application/json
+securityDefinitions:
+#  ApiKeyAuth:
+#    type: apiKey
+#    name: Authorization
+#    in: header
+paths:
+    /membership/register:
+        post:
+            summary: Register a membership
+            description: Register a membership
+            parameters:
+                - name: email
+                  in: formData
+                  description: Email of member
+                  required: true
+                - name: walletAddress
+                  in: formData
+                  description: Wallet address of member
+                  required: true
+
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+                406:
+                    description: Not Acceptable
+                500:
+                    description: Server Internal error
+            tags:
+                - Membership
+    /membership/checkMember:
+        get:
+            summary: Check an wallet address is membership or not
+            description: Check an wallet address is membership or not
+            parameters:
+                - name: walletAddress
+                  in: query
+                  description: Wallet address of member
+                  required: true
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Membership
+    /membership/getBalance:
+        get:
+            summary: Get balance of member
+            description: Get balance of member
+            parameters:
+                - name: walletAddress
+                  in: query
+                  description: Wallet address of member
+                  required: true
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Membership
+
+    /membership/withdrawal:
+        post:
+            summary: withdrawal token from binkabi contract
+            description: withdrawal token from binkabi contract
+            parameters:
+                - name: walletAddress
+                  in: formData
+                  description: Wallet address of member
+                  required: true
+                - name: amount
+                  in: formData
+                  description: Amount token withdrawal
+                  required: true
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Membership
