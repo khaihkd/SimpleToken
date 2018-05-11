@@ -8,7 +8,10 @@ services:
     build: ./server/
     ports:
      - "80:80"
-    env_file: server/env.env
+    environment:
+     - MONGODB_URI=mongodb://mongo:27017/binkabi
+     - MNEMONIC="act output engage farm obscure name rubber fuel under voice glove mandate"
+     - NETWORK_URL="https://rinkeby.infura.io"
     volumes:
       - ./server/logs:/root/.npm/
     links:
