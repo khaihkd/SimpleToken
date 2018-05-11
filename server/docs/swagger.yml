@@ -91,7 +91,7 @@ paths:
                   in: formData
                   description: Amount token withdrawal
                   required: true
-                  type: float
+                  type: number
             responses:
                 200:
                     description: OK
