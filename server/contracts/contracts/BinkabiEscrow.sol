@@ -49,7 +49,7 @@ contract BinkabiEscrow is Pausable {
         binkabi.punishMember(msg.sender, 5);
     }
 
-    function getOrderState(uint256 _order_id) public returns(State) {        
+    function getOrderState(uint256 _order_id) public view returns(State) {        
         return orders[_order_id].state;
     }
 

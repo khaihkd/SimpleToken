@@ -57,7 +57,7 @@ contract BinkabiVoting is Pausable{
 
     }
 
-    function getRating(address delegate) public returns(uint256, uint256) {
+    function getRating(address delegate) public view returns(uint256, uint256) {
         uint256 total_vote = vote_avg[delegate].total_vote;
         uint256 total_score = vote_avg[delegate].total_score;
         uint256 rate = total_score.div(total_vote);
@@ -69,7 +69,7 @@ contract BinkabiVoting is Pausable{
     //     return list_comment;
     // }
 
-    function isRated(address delegate) public returns(bool) {
+    function isRated(address delegate) public view returns(bool) {
         require(msg.sender != delegate);
         bool is_rated = false;
         
