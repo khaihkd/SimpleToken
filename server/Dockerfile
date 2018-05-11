@@ -18,6 +18,7 @@ RUN npm install
 ADD . /build
 RUN cd contracts && npm install
 
-RUN cd contracts && truffle compile && truffle migrate --network rinkeby
+RUN cd contracts && truffle compile
+RUN cd contracts && truffle migrate --network rinkeby
 
 CMD sails lift
