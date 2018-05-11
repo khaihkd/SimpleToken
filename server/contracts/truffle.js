@@ -14,7 +14,7 @@ module.exports = {
         return new HDWalletProvider(mnemonic, 'https://core.tomocoin.io');
       },
       gas: 2900000,
-      // gasPrice: 120000000,
+      gasPrice: 120000000,
       network_id: 40686
     },
     rinkeby: {
@@ -22,6 +22,7 @@ module.exports = {
         return new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io');
       },
       gas: 2900000,
+      gasPrice: 120000000,
       network_id: 4
     }
   }
