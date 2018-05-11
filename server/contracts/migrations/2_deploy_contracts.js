@@ -19,29 +19,31 @@ module.exports = function (deployer) {
         BinkabiTokenSale,
         BinbabiTokenCreate.address,
         MultiSigWallet.address
-      ).then(() => {
-        return deployer.deploy(
-          BinkabiEscrow,
-          BinbabiTokenCreate.address
-        ).then(() => {
-          return deployer.deploy(
-            BinkabiVoting,
-            BinbabiTokenCreate.address
-          ).then(() => {
-            return deployer.deploy(
-              BinkabiMembership,
-              BinbabiTokenCreate.address
-            ).then(() => {
+      )
+      // .then(() => {
+      //   return deployer.deploy(
+      //     BinkabiEscrow,
+      //     BinbabiTokenCreate.address
+      //   ).then(() => {
+      //     return deployer.deploy(
+      //       BinkabiVoting,
+      //       BinbabiTokenCreate.address
+      //     ).then(() => {
+      //       return deployer.deploy(
+      //         BinkabiMembership,
+      //         BinbabiTokenCreate.address
+      //       )
+            .then(() => {
               return BinbabiTokenCreate.deployed().then(function (instance) {
-                instance.setTokenEscrowAddress(BinkabiEscrow.address);
-                instance.setTokenVotingAddress(BinkabiVoting.address);
+                // instance.setTokenEscrowAddress(BinkabiEscrow.address);
+                // instance.setTokenVotingAddress(BinkabiVoting.address);
                 instance.setTokenMembershipAddress(BinkabiMembership.address);
                 return instance.setTokenSaleAddress(BinkabiTokenSale.address);
               });
-            })
-          })
+        //     })
+        //   })
 
-        })
+        // })
       });
     }).catch(e => console.log(e));
   })
