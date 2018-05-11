@@ -1,5 +1,5 @@
 var HDWalletProvider = require('truffle-hdwallet-provider');
-var mnemonic = "act output engage farm obscure name rubber fuel under voice glove mandate";
+var mnemonic = process.env.mnemonic;
 module.exports = {
   networks: {
     development: {
@@ -19,7 +19,7 @@ module.exports = {
     },
     rinkeby: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, 'https://www.rinkeby.io');
+        return new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io');
       },
       gas: 2900000,
       network_id: 4

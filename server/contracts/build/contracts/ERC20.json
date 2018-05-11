@@ -180,9 +180,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.20;\n\n/*\n * ERC20 interface\n * see https://github.com/ethereum/EIPs/issues/20\n */\n\n\ncontract ERC20 {\n    function totalSupply() public view returns (uint256);\n\n    function balanceOf(address who) public view returns (uint256);\n\n    function transfer(address to, uint256 value) public returns (bool);\n\n    function allowance(address owner, address spender) public view returns (uint256);\n\n    function transferFrom(address from, address to, uint256 value) public returns (bool);\n\n    function approve(address spender, uint256 value) public returns (bool);\n\n    event Transfer(address indexed from, address indexed to, uint256 value);\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n}",
-  "sourcePath": "/mnt/f/xenial/project/tomo/binkabi-api/contracts/contracts/interfaces/ERC20.sol",
+  "sourcePath": "/mnt/f/xenial/project/tomo/binkabi/server/contracts/contracts/interfaces/ERC20.sol",
   "ast": {
-    "absolutePath": "/mnt/f/xenial/project/tomo/binkabi-api/contracts/contracts/interfaces/ERC20.sol",
+    "absolutePath": "/mnt/f/xenial/project/tomo/binkabi/server/contracts/contracts/interfaces/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         2703
@@ -1016,7 +1016,7 @@
     "src": "0:737:7"
   },
   "legacyAST": {
-    "absolutePath": "/mnt/f/xenial/project/tomo/binkabi-api/contracts/contracts/interfaces/ERC20.sol",
+    "absolutePath": "/mnt/f/xenial/project/tomo/binkabi/server/contracts/contracts/interfaces/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         2703
@@ -1855,5 +1855,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-10T10:16:00.293Z"
+  "updatedAt": "2018-05-10T18:17:57.452Z"
 }

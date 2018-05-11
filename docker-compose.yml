@@ -11,7 +11,8 @@ services:
     environment:
      - MONGODB_URI=mongodb://mongo:27017/binkabi
      - mnemonic="act output engage farm obscure name rubber fuel under voice glove mandate"
-     - network="https://core.tomocoin.io"
+     - network_url="https://rinkeby.infura.io"
+     - network=rinkeby
     volumes:
       - ./server/logs:/root/.npm/
     links:

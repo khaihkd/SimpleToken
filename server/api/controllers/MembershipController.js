@@ -7,7 +7,7 @@
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
 let mnemonic = process.env.mnemonic
-let walletProvider = new HDWalletProvider(mnemonic, process.env.network)
+let walletProvider = new HDWalletProvider(mnemonic, process.env.network_url)
 let web3 = new Web3(walletProvider)
 
 let contract = require('truffle-contract')

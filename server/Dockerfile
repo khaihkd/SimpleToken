@@ -18,6 +18,6 @@ RUN npm install
 ADD . /build
 RUN cd contracts && npm install
 
-RUN cd contracts && truffle compile && truffle migrate --network tomo
+RUN cd contracts && truffle compile && truffle migrate --network $network
 
 CMD sails lift
