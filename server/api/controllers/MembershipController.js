@@ -18,6 +18,7 @@ if (process.env.NETWORK_PORT){
 } else {
     port = 8545
 }
+let mnemonic = process.env.MNEMONIC
 
 let network = 'http://' + host + ':' + port
 let walletProvider = new HDWalletProvider(mnemonic, network)
