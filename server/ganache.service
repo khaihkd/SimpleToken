@@ -1,0 +1,9 @@
+[Unit]
+Description=Ganache-cli
+After=network.target
+
+[Service]
+ExecStart=ganache-cli -m "act output engage farm obscure name rubber fuel under voice glove mandate" -e 99999999
+
+[Install]
+WantedBy=multi-user.target
