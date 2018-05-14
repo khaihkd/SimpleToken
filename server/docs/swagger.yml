@@ -99,3 +99,13 @@ paths:
                     description: Bad Request
             tags:
                 - Membership
+
+    /getAllContract:
+        get:
+            summary: list all contract address
+            description: list all contract address
+            responses:
+                200:
+                    description: OK
+            tags:
+                - Config
