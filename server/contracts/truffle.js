@@ -1,10 +1,22 @@
 var HDWalletProvider = require('truffle-hdwallet-provider');
 var mnemonic = process.env.MNEMONIC;
+
+let host, port;
+if (process.env.NETWORK_HOST){
+  host = process.env.NETWORK_HOST
+} else {
+  host = '127.0.0.1'
+}
+if (process.env.NETWORK_PORT){
+  port = process.env.NETWORK_PORT
+} else {
+  port = 8545
+}
 module.exports = {
   networks: {
     development: {
-      host: process.env.NETWORK_HOST ? process.env.NETWORK_HOST : '127.0.0.1',
-      port: process.env.NETWORK_PORT ? process.env.NETWORK_PORT: 8545,
+      host: host,
+      port: port,
       gas: 4712388,
       gasPrice: 100000000000,
       network_id: "*"
