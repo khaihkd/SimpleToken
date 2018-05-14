@@ -12,6 +12,6 @@ ADD . /build
 RUN cd contracts && npm install
 
 RUN cd contracts && truffle compile
-RUN cd contracts && MNEMONIC="act output engage farm obscure name rubber fuel under voice glove mandate" truffle migrate --network tomo
+RUN cd contracts && MNEMONIC="act output engage farm obscure name rubber fuel under voice glove mandate" truffle migrate --network rinkeby
 
 CMD sails lift
