@@ -38,6 +38,7 @@ module.exports = {
       return res.json({error: false, message: 'Register successful', data: r})
     }
     catch (e) {
+      sails.log(e)
       return res.status(400).json({error: true, message: 'Email or wallet address exist. Please check again'})
     }
 
@@ -60,6 +61,7 @@ module.exports = {
       return res.json({error: false, message: 'Get balance is successful', balance: parseFloat(r)})
     }
     catch (e) {
+      sails.log(e)
       return res.status(400).json({error: true, message: 'Your wallet address is incorrect!'})
     }
   },
@@ -82,6 +84,7 @@ module.exports = {
       return res.json({error: false, message: 'Check membership is successful', isMember: r})
     }
     catch (e) {
+      sails.log(e)
       return res.status(400).json({error: true, message: 'Your wallet address is incorrect!'})
     }
   },
@@ -109,6 +112,7 @@ module.exports = {
       return res.json({error: false, message: 'Withdrawal is send success', log: r})
     }
     catch (e) {
+      sails.log(e)
       return res.status(400).json({error: true, message: 'Wallet address is not membership, or amount is not enough!'})
     }
   }
