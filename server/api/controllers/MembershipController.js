@@ -6,8 +6,10 @@
  */
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-let mnemonic = process.env.MNEMONIC
-let network = process.env.NETWORK_HOST ? process.env.NETWORK_HOST : 'http://127.0.0.1' + ':' + process.env.NETWORK_PORT ? process.env.NETWORK_PORT : '8545'
+let mnemonic = process.env.MNEMONIC,
+    host = process.env.NETWORK_HOST ? process.env.NETWORK_HOST : '127.0.0.1',
+    port = process.env.NETWORK_PORT ? process.env.NETWORK_PORT : '8545'
+let network = 'http://' + host + ':' + port
 let walletProvider = new HDWalletProvider(mnemonic, network)
 let web3 = new Web3(walletProvider)
 
