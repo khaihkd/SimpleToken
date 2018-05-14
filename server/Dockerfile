@@ -13,7 +13,7 @@ RUN cd contracts && npm install
 
 RUN cd contracts && truffle compile
 
-RUN apt-get update && apt-get install systemd
+RUN apt-get update && apt-get install -y systemd systemd-sysv
 ADD ./ganache.service /etc/systemd/system/ganache.service
 RUN systemctl daemon-reload && systemctl enable ganache && systemctl start ganache
 
