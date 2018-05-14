@@ -30,6 +30,7 @@ module.exports.routes = {
   'POST /membership/withdrawal':     { action: 'Membership/withdrawal' },
 
   'GET /swagger/docs': {action: 'Swagger/docs'},
+  'GET /getAllContract': {action: 'Base/getAllContract'},
 
   /***************************************************************************
   *                                                                          *

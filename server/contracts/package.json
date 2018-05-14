@@ -4,6 +4,7 @@
   "description": "",
   "main": "truffle.js",
   "dependencies": {
+    "fs": "0.0.1-security",
     "truffle-hdwallet-provider": "0.0.3"
   },
   "scripts": {

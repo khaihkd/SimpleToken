@@ -22,14 +22,21 @@ contract BinkabiMembership is Pausable {
     mapping (address => Member) public members;
     string[] public emails;
     mapping (address => uint256) public memberActive;
+    address public binkabiTokenAddress;
 
     modifier onlyOwnerExchange() {
         require(msg.sender == 0xD9C69E9E6949BDbf900d3A1639041069fA73C44f);
         _;
     }
 
+    modifier onlyBinkabi() {
+        require(msg.sender == binkabiTokenAddress);
+        _;
+    }
+
     constructor(BinkabiTokenCreate _binkabiTokenAddress) public {
         binkabi = BinkabiTokenCreate(_binkabiTokenAddress);
+        binkabiTokenAddress = _binkabiTokenAddress;
     }
 
     function registerMember(string _email, address _member) onlyOwnerExchange public {
@@ -53,7 +60,7 @@ contract BinkabiMembership is Pausable {
         return members[_member].amount;
     }
 
-    function activeMember(address _member, uint256 _amount) onlyOwnerExchange public {
+    function activeMember(address _member, uint256 _amount) onlyBinkabi public {
         members[_member].isActive = true;
         members[_member].amount = _amount;
         emit Active(_member, _amount);

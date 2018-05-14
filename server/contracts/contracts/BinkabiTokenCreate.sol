@@ -1,17 +1,20 @@
 pragma solidity ^0.4.20;
 import './interfaces/StandardToken.sol';
 import './interfaces/Pausable.sol';
+import './BinkabiMembership.sol';
 
 contract BinkabiTokenCreate is StandardToken, Pausable{
     string public constant name = "Binkabi";
     string public constant symbol = "BNB";
     uint256 public constant decimals = 18;
+    BinkabiMembership mbship;
 
     address public tokenSaleAddress;
     address public tokenEscrowAddress;
     address public tokenVotingAddress;
     address public tokenMembershipAddress;
     address public binkabiDepositAddress; // MultiSigWallet
+    address public binkabiTokenAdress;
 
     uint256 public constant binkabiDeposit = 100000000 * 10 ** decimals;
 
@@ -28,7 +31,11 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
         totalSupply_ = binkabiDeposit;
     }    
 
-    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {
+    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {        
+        mbship = BinkabiMembership(binkabiTokenAdress);
+        if (_to == tokenMembershipAddress) {
+            mbship.activeMember(msg.sender, _value);
+        }
         return super.transfer(_to, _value);
     }
 
@@ -38,6 +45,10 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
 
     function balanceOf(address _owner) public view returns (uint256 balance) {
         return super.balanceOf(_owner);
+    }
+
+    function setBinkabiAddress(address _bnbAdress) public onlyOwner{
+        binkabiTokenAdress = _bnbAdress;        
     }
 
     // Setup Token Sale Smart Contract
