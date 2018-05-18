@@ -18,6 +18,7 @@ let contract = require('truffle-contract')
 let BinkabiMembership = require('../../contracts/build/contracts/BinkabiMembership.json')
 let Membership = contract(BinkabiMembership)
 Membership.setProvider(web3.currentProvider)
+let membership = Membership.deployed()
 
 module.exports = {
   register: async function (req, res) {
@@ -32,14 +33,13 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Wallet address is incorrect address'})
     }
 
-    let _contract = await Membership.deployed()
     try {
-      let r = await _contract.registerMember(email, walletAddress, {from: await web3.eth.getCoinbase()})
+      let r = await membership.registerMember(email, walletAddress, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Register successful', data: r})
     }
     catch (e) {
       sails.log(e)
-      return res.status(400).json({error: true, message: 'Email or wallet address exist. Please check again'})
+      return res.status(400).json({error: true, message: 'Wallet is exist. Cannot use this address to register new membership'})
     }
 
   },
@@ -54,15 +54,13 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Wallet address is incorrect address'})
     }
 
-    let _contract = await Membership.deployed()
-
     try {
-      let r = await _contract.getAmount(walletAddress, {from: await web3.eth.getCoinbase()})
+      let r = await membership.getAmount(walletAddress, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Get balance is successful', balance: parseFloat(r)})
     }
     catch (e) {
       sails.log(e)
-      return res.status(400).json({error: true, message: 'Your wallet address is incorrect!'})
+      return res.status(400).json({error: true, message: 'Something is wrong'})
     }
   },
 
@@ -77,15 +75,13 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Wallet address is incorrect address'})
     }
 
-    let _contract = await Membership.deployed()
-
     try {
-      let r = await _contract.isMembership(walletAddress, {from: await web3.eth.getCoinbase()})
+      let r = await membership.isMembership(walletAddress, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Check membership is successful', isMember: r})
     }
     catch (e) {
       sails.log(e)
-      return res.status(400).json({error: true, message: 'Your wallet address is incorrect!'})
+      return res.status(400).json({error: true, message: 'Something is wrong'})
     }
   },
 
@@ -105,15 +101,13 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Amount is too low'})
     }
 
-    let _contract = await Membership.deployed()
-
     try {
-      let r = await _contract.memberWithdrawal(walletAddress, amount, {from: await web3.eth.getCoinbase()})
+      let r = await membership.memberWithdrawal(walletAddress, amount, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Withdrawal is send success', log: r})
     }
     catch (e) {
       sails.log(e)
-      return res.status(400).json({error: true, message: 'Wallet address is not membership, or amount is not enough!'})
+      return res.status(400).json({error: true, message: 'Your balance is not enough'})
     }
   }
 

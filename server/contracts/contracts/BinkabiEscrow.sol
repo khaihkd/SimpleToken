@@ -34,7 +34,6 @@ contract BinkabiEscrow is Pausable {
         require(_amount_buyer > 0 && _amount_seller > 0);
         uint256 _order_id = order_id + 1;
 
-
         orders[_order_id] = Order({
             seller: _seller,
             buyer: _buyer,
