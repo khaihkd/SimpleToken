@@ -5,7 +5,7 @@ import './BinkabiMembership.sol';
 
 contract BinkabiTokenCreate is StandardToken, Pausable{
     string public constant name = "Binkabi";
-    string public constant symbol = "BNB";
+    string public constant symbol = "BKB";
     uint256 public constant decimals = 18;
     BinkabiMembership mbship;
 
@@ -18,7 +18,7 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
 
     uint256 public constant binkabiDeposit = 100000000 * 10 ** decimals;
 
-    event TokenEscrow(address _buyer_seller, uint256 _amount, bool _isArbiterReceiver);
+    event TokenEscrow(address _buyer, address _seller, uint256 _amount_buyer, uint256 _amount_seller);
     event TokenBonus(address _member, uint256 _amount);
     event TokenPunish(address _member, uint256 _amount);
     event MembershipWithdrawal(address _member, uint256 _amount);
@@ -78,29 +78,15 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     }
     
     // This function is only called by Token escrow Smart Contract
-    function escrow(address _buyer_seller, uint256 _amount, bool _isArbiterReceiver) public whenNotPaused returns (bool) {
-        require(_amount > 0);
+    function escrow(address _buyer, address _seller, uint256 _amount_buyer, uint256 _amount_seller) public whenNotPaused {
+        require(_amount_buyer > 0 || _amount_seller > 0);
         require(msg.sender == tokenEscrowAddress);
+        
+        balances[tokenEscrowAddress] = balances[tokenEscrowAddress].sub(_amount_buyer).sub(_amount_seller);
+        balances[_buyer] = balances[_buyer].add(_amount_buyer);
+        balances[_seller] = balances[_seller].add(_amount_seller);
 
-        address receiver;
-        address sender;
-        if (_isArbiterReceiver){
-            receiver = tokenEscrowAddress;
-            sender = _buyer_seller;
-        } else {
-            receiver = _buyer_seller;
-            sender = tokenEscrowAddress;            
-        }
-
-        if (balances[sender] < _amount) {
-            return false;
-        }
-
-        balances[sender] = balances[sender].sub(_amount);
-        balances[receiver] = balances[receiver].add(_amount);
-
-        emit TokenEscrow(_buyer_seller, _amount, _isArbiterReceiver);
-        return true;
+        emit TokenEscrow(_buyer, _seller, _amount_buyer, _amount_seller);
     }
 
     // Setup Token voting Smart Contract
@@ -108,31 +94,7 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
         if (_tokenVotingAddress != address(0)) {
             tokenVotingAddress = _tokenVotingAddress;
         }
-    }
-    
-    // This function is only called by Token voting Smart Contract
-    function bonusMember(address _voter, uint256 _amount) public whenNotPaused {
-        require(_amount > 0);
-        require(msg.sender == tokenVotingAddress);
-        
-        balances[tokenVotingAddress] = balances[tokenVotingAddress].sub(_amount);
-        balances[_voter] = balances[_voter].add(_amount);
-
-        emit TokenBonus(_voter, _amount);
-    }
-    
-    // This function is called by Token voting & escrow Smart Contract
-    function punishMember(address _person, uint256 _amount) public whenNotPaused {
-        require(_amount > 0);
-        require(msg.sender == tokenVotingAddress || msg.sender == tokenEscrowAddress);
-        
-        balances[tokenVotingAddress] = balances[tokenVotingAddress].sub(_amount);
-        balances[_person] = balances[_person].add(_amount);
-
-        emit TokenPunish(_person, _amount);
-    }
-
-    
+    }      
 
     // Setup Token Membership Smart Contract
     function setTokenMembershipAddress(address _tokenMembershipAddress) public onlyOwner {
@@ -143,7 +105,8 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     
     // This function is only called by Token Membership Smart Contract
     function withdrawal(address _member, uint256 _amount) whenNotPaused public {
-        balances[msg.sender].sub(_amount);
+        require(msg.sender == tokenMembershipAddress);
+        balances[tokenMembershipAddress].sub(_amount);
         balances[_member].add(_amount);
         emit MembershipWithdrawal(_member, _amount);
     }
