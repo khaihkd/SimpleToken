@@ -34,7 +34,8 @@ contract BinkabiTokenCreate is StandardToken, Pausable{
     function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {        
         mbship = BinkabiMembership(binkabiTokenAdress);
         if (_to == tokenMembershipAddress) {
-            mbship.activeMember(msg.sender, _value);
+            
+            mbship.activeMember(msg.sender, _value, block.number);
         }
         return super.transfer(_to, _value);
     }

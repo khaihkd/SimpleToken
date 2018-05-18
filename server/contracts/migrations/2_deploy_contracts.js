@@ -22,44 +22,44 @@ module.exports = function (deployer) {
         BinkabiTokenCreate.address,
         MultiSigWallet.address
       )
-        // .then(() => {
-        //   return deployer.deploy(
-        //     BinkabiEscrow,
-        //     BinkabiTokenCreate.address
-        //   ).then(() => {
-        //     return deployer.deploy(
-        //       BinkabiVoting,
-        //       BinkabiTokenCreate.address
-        //     )
         .then(() => {
           return deployer.deploy(
-            BinkabiMembership,
+            BinkabiEscrow,
             BinkabiTokenCreate.address
-          )
+          ).then(() => {
+            return deployer.deploy(
+              BinkabiVoting,
+              BinkabiTokenCreate.address
+            )
+              .then(() => {
+                return deployer.deploy(
+                  BinkabiMembership,
+                  BinkabiTokenCreate.address
+                )
 
-            .then(() => {
+                  .then(() => {
 
-              return BinkabiTokenCreate.deployed().then(function (instance) {
+                    return BinkabiTokenCreate.deployed().then(function (instance) {
 
-                let obj = {
-                  "BinkabiTokenCreate": BinkabiTokenCreate.address,
-                  "BinkabiTokenSale": BinkabiTokenSale.address,
-                  "BinkabiMembership": BinkabiMembership.address
-                };
-                let js = JSON.stringify(obj);
-                fs.writeFile("build/contractAddress.json", js, 'utf8');
+                      let obj = {
+                        "BinkabiTokenCreate": BinkabiTokenCreate.address,
+                        "BinkabiTokenSale": BinkabiTokenSale.address,
+                        "BinkabiMembership": BinkabiMembership.address
+                      };
+                      let js = JSON.stringify(obj);
+                      fs.writeFile("build/contractAddress.json", js, 'utf8');
 
 
-                // instance.setTokenEscrowAddress(BinkabiEscrow.address);
-                // instance.setTokenVotingAddress(BinkabiVoting.address);
-                instance.setTokenMembershipAddress(BinkabiMembership.address);
-                instance.setBinkabiAddress(BinkabiTokenCreate.address);
-                return instance.setTokenSaleAddress(BinkabiTokenSale.address);
-              });
-            })
-          //   })
+                      instance.setTokenEscrowAddress(BinkabiEscrow.address);
+                      instance.setTokenVotingAddress(BinkabiVoting.address);
+                      instance.setTokenMembershipAddress(BinkabiMembership.address);
+                      instance.setBinkabiAddress(BinkabiTokenCreate.address);
+                      return instance.setTokenSaleAddress(BinkabiTokenSale.address);
+                    });
+                  })
+              })
 
-          // })
+          })
         });
     }).catch(e => console.log(e));
   })

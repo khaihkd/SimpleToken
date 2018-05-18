@@ -1,5 +1,4 @@
 pragma solidity ^0.4.20;
-pragma experimental ABIEncoderV2;
 import './interfaces/Pausable.sol';
 import './BinkabiTokenCreate.sol';
 
@@ -98,12 +97,10 @@ contract BinkabiEscrow is Pausable {
         }
     }
 
-    function refundingOrder(address _from, uint256 _order_id, string[] _hash) public {
+    function refundingOrder(address _from, uint256 _order_id, string _hash) public {
         require(_from == orders[_order_id].buyer);
         orders[_order_id].state = State.refunding;
-        for (uint256 i = 0; i < _hash.length; i++) {
-            orders[_order_id].docs_buyer.push(_hash[i]);
-        }
+        orders[_order_id].docs_buyer.push(_hash);
 
     }
 
@@ -113,23 +110,28 @@ contract BinkabiEscrow is Pausable {
         binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);
     }
 
-    function deliverOrder(uint256 _order_id, string[] _hash) public {
+    function deliverOrder(uint256 _order_id, string _hash) public {
         orders[_order_id].state = State.delivering;   
-        for (uint256 i = 0; i < _hash.length; i++) {
-            orders[_order_id].docs_seller.push(_hash[i]);
-        }     
+        orders[_order_id].docs_seller.push(_hash);
     }
 
-    function completedOrder(address _from, uint256 _order_id, string[] _hash, uint256 _amount_buyer, uint256 _amount_seller) public returns (bool) {
+    function completedOrder(address _from, uint256 _order_id, string _hash, uint256 _amount_buyer, uint256 _amount_seller) public returns (bool) {
         require(_from == orders[_order_id].buyer);
-        orders[_order_id].state = State.completed;  
-        
-        for (uint256 i = 0; i < _hash.length; i++) {
-            orders[_order_id].docs_buyer.push(_hash[i]);
-        }
+        orders[_order_id].state = State.completed;          
+        orders[_order_id].docs_buyer.push(_hash);
 
-        binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);
-        
+        binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);        
+    }
+
+    function uploadDocument(address _from, uint256 _order_id, string _hash) public returns (bool) {
+        if (_from == orders[_order_id].buyer){
+            orders[_order_id].docs_buyer.push(_hash);
+            return true;
+        } else if (_from == orders[_order_id].seller) {
+            orders[_order_id].docs_seller.push(_hash);
+            return true;
+        }
+        return false;
     }
 
     

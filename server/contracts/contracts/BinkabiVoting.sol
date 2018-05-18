@@ -72,8 +72,8 @@ contract BinkabiVoting is Pausable{
         return total_vote;
     }
 
-    function getComment(address _delegate, uint256 _index) public view returns(string) {
-        string _comment = voting[_delegate][_index].description;
+    function getComment(address _delegate, uint256 _index) public view returns(string _comment) {
+        _comment = voting[_delegate][_index].description;
         return _comment;
     }
 
