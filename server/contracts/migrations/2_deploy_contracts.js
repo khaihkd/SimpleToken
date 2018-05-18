@@ -44,7 +44,9 @@ module.exports = function (deployer) {
                       let obj = {
                         "BinkabiTokenCreate": BinkabiTokenCreate.address,
                         "BinkabiTokenSale": BinkabiTokenSale.address,
-                        "BinkabiMembership": BinkabiMembership.address
+                        "BinkabiMembership": BinkabiMembership.address,
+                        "BinkabiVoting": BinkabiVoting.address,
+                        "BinkabiEscrow": BinkabiEscrow.address,
                       };
                       let js = JSON.stringify(obj);
                       fs.writeFile("build/contractAddress.json", js, 'utf8');
