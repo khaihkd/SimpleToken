@@ -1,4 +1,4 @@
-const BinkabiTokenCreate = artifacts.require("BinkabiTokenCreate");
+const BinkabiToken = artifacts.require("BinkabiToken");
 const BinkabiTokenSale = artifacts.require("BinkabiTokenSale");
 const BinkabiEscrow = artifacts.require("BinkabiEscrow");
 const BinkabiVoting = artifacts.require("BinkabiVoting");
@@ -14,35 +14,35 @@ module.exports = function (deployer) {
     "0x9d281b5b56Bccc7D08B3119ED3692e83cF9f6199"
   ], 2).then(() => {
     return deployer.deploy(
-      BinkabiTokenCreate,
+      BinkabiToken,
       MultiSigWallet.address
     ).then(() => {
       return deployer.deploy(
         BinkabiTokenSale,
-        BinkabiTokenCreate.address,
+        BinkabiToken.address,
         MultiSigWallet.address
       )
         .then(() => {
           return deployer.deploy(
             BinkabiEscrow,
-            BinkabiTokenCreate.address
+            BinkabiToken.address
           ).then(() => {
             return deployer.deploy(
               BinkabiVoting,
-              BinkabiTokenCreate.address
+              BinkabiToken.address
             )
               .then(() => {
                 return deployer.deploy(
                   BinkabiMembership,
-                  BinkabiTokenCreate.address
+                  BinkabiToken.address
                 )
 
                   .then(() => {
 
-                    return BinkabiTokenCreate.deployed().then(function (instance) {
+                    return BinkabiToken.deployed().then(function (instance) {
 
                       let obj = {
-                        "BinkabiTokenCreate": BinkabiTokenCreate.address,
+                        "BinkabiToken": BinkabiToken.address,
                         "BinkabiTokenSale": BinkabiTokenSale.address,
                         "BinkabiMembership": BinkabiMembership.address,
                         "BinkabiVoting": BinkabiVoting.address,
@@ -55,7 +55,7 @@ module.exports = function (deployer) {
                       instance.setTokenEscrowAddress(BinkabiEscrow.address);
                       instance.setTokenVotingAddress(BinkabiVoting.address);
                       instance.setTokenMembershipAddress(BinkabiMembership.address);
-                      instance.setBinkabiAddress(BinkabiTokenCreate.address);
+                      instance.setBinkabiAddress(BinkabiToken.address);
                       return instance.setTokenSaleAddress(BinkabiTokenSale.address);
                     });
                   })

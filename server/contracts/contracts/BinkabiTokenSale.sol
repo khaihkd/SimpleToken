@@ -2,7 +2,7 @@ pragma solidity ^0.4.20;
 import './interfaces/Pausable.sol';
 import './libs/SafeMath.sol';
 import './libs/SafeMath.sol';
-import './BinkabiTokenCreate.sol';
+import './BinkabiToken.sol';
 
 
 contract BinkabiTokenSale is Pausable {
@@ -12,14 +12,14 @@ contract BinkabiTokenSale is Pausable {
     uint256 public constant totalTokenSale = 50000000 * 10 ** 18;
     uint256 public totalTokenSold = 0;
 
-    BinkabiTokenCreate binkabi;
+    BinkabiToken binkabi;
 
     event MintBinkabi(address from, address to, uint256 val);
     event RefundBinkabi(address to, uint256 val);
     event LogBinkabi(address add, uint256 val);
 
-    constructor(BinkabiTokenCreate _binkabiTokenAddress, address _binkabiDepositAddress) public {
-        binkabi = BinkabiTokenCreate(_binkabiTokenAddress);
+    constructor(BinkabiToken _binkabiTokenAddress, address _binkabiDepositAddress) public {
+        binkabi = BinkabiToken(_binkabiTokenAddress);
         binkabiDepositAddress = _binkabiDepositAddress;
     }
 

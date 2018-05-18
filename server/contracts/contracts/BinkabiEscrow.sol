@@ -1,14 +1,14 @@
 pragma solidity ^0.4.20;
 import './interfaces/Pausable.sol';
-import './BinkabiTokenCreate.sol';
+import './BinkabiToken.sol';
 
 contract BinkabiEscrow is Pausable {
     enum State {awaiting_payment, awaiting_delivery, delivering, completed, refunding, refunded, cancel}
 
-    BinkabiTokenCreate binkabi;
+    BinkabiToken binkabi;
 
-    constructor(BinkabiTokenCreate _binkabiTokenAddress) public {
-        binkabi = BinkabiTokenCreate(_binkabiTokenAddress);
+    constructor(BinkabiToken _binkabiTokenAddress) public {
+        binkabi = BinkabiToken(_binkabiTokenAddress);
     }
 
     struct Order {

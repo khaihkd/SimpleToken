@@ -2,12 +2,12 @@ pragma solidity ^0.4.20;
 
 import './interfaces/Pausable.sol';
 import './libs/SafeMath.sol';
-import './BinkabiTokenCreate.sol';
+import './BinkabiToken.sol';
 
 contract BinkabiMembership is Pausable {
     using SafeMath for uint256;
     mapping (address => uint256) balances;
-    BinkabiTokenCreate binkabi;
+    BinkabiToken binkabi;
 
     event Withdrawal(address _holder, uint256 _amount);
     event Active(address _holder, uint256 _amount);
@@ -35,8 +35,8 @@ contract BinkabiMembership is Pausable {
         _;
     }
 
-    constructor(BinkabiTokenCreate _binkabiTokenAddress) public {
-        binkabi = BinkabiTokenCreate(_binkabiTokenAddress);
+    constructor(BinkabiToken _binkabiTokenAddress) public {
+        binkabi = BinkabiToken(_binkabiTokenAddress);
         binkabiTokenAddress = _binkabiTokenAddress;
     }
 

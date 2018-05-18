@@ -3,7 +3,7 @@ import './interfaces/StandardToken.sol';
 import './interfaces/Pausable.sol';
 import './BinkabiMembership.sol';
 
-contract BinkabiTokenCreate is StandardToken, Pausable{
+contract BinkabiToken is StandardToken, Pausable{
     string public constant name = "Binkabi";
     string public constant symbol = "BKB";
     uint256 public constant decimals = 18;

@@ -1,17 +1,17 @@
 pragma solidity ^0.4.20;
 import './interfaces/Pausable.sol';
 import './libs/SafeMath.sol';
-import './BinkabiTokenCreate.sol';
+import './BinkabiToken.sol';
 import './BinkabiEscrow.sol';
 
 contract BinkabiVoting is Pausable{
     using SafeMath for uint256;
 
-    BinkabiTokenCreate binkabi;
+    BinkabiToken binkabi;
     BinkabiEscrow escrow;
 
-    constructor(BinkabiTokenCreate _binkabiTokenAddress) public {
-        binkabi = BinkabiTokenCreate(_binkabiTokenAddress);
+    constructor(BinkabiToken _binkabiTokenAddress) public {
+        binkabi = BinkabiToken(_binkabiTokenAddress);
         escrow = BinkabiEscrow(_binkabiTokenAddress);
     }
 
