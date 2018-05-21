@@ -11,11 +11,4 @@ RUN npm install -g truffle sails
 RUN npm install
 
 ADD . /build
-RUN cd contracts && npm install
-
-RUN cd contracts && truffle compile
-
-RUN cd contracts && truffle migrate
-
-
 CMD sails lift
