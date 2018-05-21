@@ -24,10 +24,21 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Membership API
   'POST /membership/register':         { action: 'Membership/register' },
   'GET /membership/checkMember':     { action: 'Membership/checkMember' },
   'GET /membership/getBalance':     { action: 'Membership/getBalance' },
   'POST /membership/withdrawal':     { action: 'Membership/withdrawal' },
+
+  // Escrow API
+  'POST /escrow/createOrder': {action: 'Escrow/createOrder'},
+  'GET /escrow/orderState/:orderId': {action: 'Escrow/getOrderState'},
+  'POST /escrow/cancelOrder/:orderId': {action: 'Escrow/cancelOrder'},
+  'POST /escrow/refundingOrder/:orderId': {action: 'Escrow/refundingOrder'},
+  'POST /escrow/confirmRefunded/:orderId': {action: 'Escrow/refundedOrder'},
+  'POST /escrow/deliverOrder/:orderId': {action: 'Escrow/deliverOrder'},
+  'POST /escrow/completedOrder/:orderId': {action: 'Escrow/completedOrder'},
+  'POST /escrow/uploadDocument/:orderId': {action: 'Escrow/uploadDocument'},
 
   'GET /swagger/docs': {action: 'Swagger/docs'},
   'GET /getAllContract': {action: 'Base/getAllContract'},

@@ -109,7 +109,8 @@ contract BinkabiEscrow is Pausable {
         binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);
     }
 
-    function deliverOrder(uint256 _order_id, string _hash) public {
+    function deliverOrder(address _from, uint256 _order_id, string _hash) public {
+        require(_from == orders[_order_id].seller);
         orders[_order_id].state = State.delivering;   
         orders[_order_id].docs_seller.push(_hash);
     }
@@ -122,15 +123,14 @@ contract BinkabiEscrow is Pausable {
         binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);        
     }
 
-    function uploadDocument(address _from, uint256 _order_id, string _hash) public returns (bool) {
+    function uploadDocument(address _from, uint256 _order_id, string _hash) public {
+        require(_from == orders[_order_id].buyer || _from == orders[_order_id].seller);
+
         if (_from == orders[_order_id].buyer){
             orders[_order_id].docs_buyer.push(_hash);
-            return true;
         } else if (_from == orders[_order_id].seller) {
             orders[_order_id].docs_seller.push(_hash);
-            return true;
         }
-        return false;
     }
 
     

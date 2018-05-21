@@ -109,3 +109,266 @@ paths:
                     description: OK
             tags:
                 - Config
+
+    /escrow/createOrder:
+        post:
+            summary: create an order before escrow
+            description: create an order before escrow
+            parameters:
+                - name: buyer
+                  in: formData
+                  description: Wallet address of buyer
+                  required: true
+                  type: string
+                - name: seller
+                  in: formData
+                  description: Wallet address of buyer
+                  required: true
+                  type: string
+                - name: amountBuyer
+                  in: formData
+                  description: Amount BKB lock up of buyer
+                  required: true
+                  type: number
+                - name: amountSeller
+                  in: formData
+                  description: Amount BKB lock up of seller
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/orderState/{orderId}:
+        get:
+            summary: create an order before escrow
+            description: create an order before escrow
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/cancelOrder/{orderId}:
+        post:
+            summary: cancel order
+            description: cancel order
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: refundBuyer
+                  in: formData
+                  description: Amount BKB refund to buyer
+                  required: true
+                  type: number
+                - name: refundSeller
+                  in: formData
+                  description: Amount BKB refund to seller
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/refundingOrder/{orderId}:
+        post:
+            summary: refunding order
+            description: When buyer said that product is not same description and want refund
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: hash
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/refundedOrder/{orderId}:
+        post:
+            summary: refunded order
+            description: Seller confirm receive his product
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: refundBuyer
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: number
+                - name: refundSeller
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/confirmRefunded/{orderId}:
+        post:
+            summary: refunded order
+            description: Seller confirm receive his product
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: refundBuyer
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: number
+                - name: refundSeller
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/deliverOrder/{orderId}:
+        post:
+            summary: deliver order
+            description: When seller confirm send product
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: hash
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+    /escrow/completedOrder/{orderId}:
+        post:
+            summary: completed order
+            description: When buyer confirm receive product
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: hash
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow
+
+
+    /escrow/uploadDocument/{orderId}:
+        post:
+            summary: upload Document
+            description: When buyer/seller need upload more document
+            parameters:
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: fromMember
+                  in: formData
+                  description: Wallet address of member (buyer/seller)
+                  required: true
+                  type: string
+                - name: hash
+                  in: formData
+                  description: hash of document
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Escrow

@@ -18,7 +18,6 @@ let contract = require('truffle-contract')
 let BinkabiMembership = require('../../contracts/build/contracts/BinkabiMembership.json')
 let Membership = contract(BinkabiMembership)
 Membership.setProvider(web3.currentProvider)
-let membership = Membership.deployed()
 
 module.exports = {
   register: async function (req, res) {
@@ -33,6 +32,7 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Wallet address is incorrect address'})
     }
 
+    let membership = await Membership.deployed()
     try {
       let r = await membership.registerMember(email, walletAddress, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Register successful', data: r})
@@ -54,6 +54,7 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Wallet address is incorrect address'})
     }
 
+    let membership = await Membership.deployed()
     try {
       let r = await membership.getAmount(walletAddress, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Get balance is successful', balance: parseFloat(r)})
@@ -75,6 +76,7 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Wallet address is incorrect address'})
     }
 
+    let membership = await Membership.deployed()
     try {
       let r = await membership.isMembership(walletAddress, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Check membership is successful', isMember: r})
@@ -101,6 +103,7 @@ module.exports = {
       return res.status(400).json({error: true, message: 'Amount is too low'})
     }
 
+    let membership = await Membership.deployed()
     try {
       let r = await membership.memberWithdrawal(walletAddress, amount, {from: await web3.eth.getCoinbase()})
       return res.json({error: false, message: 'Withdrawal is send success', log: r})
