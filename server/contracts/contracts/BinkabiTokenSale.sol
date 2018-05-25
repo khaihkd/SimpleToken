@@ -12,6 +12,19 @@ contract BinkabiTokenSale is Pausable {
     uint256 public constant totalTokenSale = 50000000 * 10 ** 18;
     uint256 public totalTokenSold = 0;
 
+
+    uint256 public constant preSaleTime = 1527825600; // 2018-06-01 04:00:00
+    uint256 public constant preSaleEnd = 1528084800; // 2018-06-04 04:00:00
+    uint256 public constant preSaleBonus = 10; // Bonus 10% pre sale
+    uint256 public constant preSaleMinContribution = 50 ether;
+    uint256 public constant preSaleMaxContribution = 100 ether;
+
+
+    uint256 public constant publicSaleTime = 1528171200; // 2018-06-05 04:00:00
+    uint256 public constant publicSaleEnd = 1528603200; // 2018-06-10 04:00:00
+    uint256 public constant publicSaleminContribution = 0.5 ether;
+    uint256 public constant publicSalemaxContribution = 10 ether;
+
     BinkabiToken binkabi;
 
     event MintBinkabi(address from, address to, uint256 val);
@@ -33,8 +46,18 @@ contract BinkabiTokenSale is Pausable {
     }
 
     function createTokens(address _beneficiary, uint256 _value) internal whenNotPaused {
+        require((now >= preSaleTime && now <= preSaleEnd) || (now >= publicSaleTime && now <= publicSaleEnd));
+        
         uint256 tokens = _value.mul(tokenExchangeRate);
-        uint256 tokenAvailable = totalTokenSale - totalTokenSold;
+        if (now >= preSaleTime && now <= preSaleEnd) {
+            require(_value >= preSaleMinContribution && _value <= preSaleMaxContribution);
+            tokens = tokens.mul((100 + preSaleBonus) / 100);
+        }
+        
+        else {
+            require(_value >= publicSaleminContribution && _value <= publicSalemaxContribution);
+        }
+        uint256 tokenAvailable = totalTokenSale.sub(totalTokenSold);
         uint256 etherToRefund = 0;
         uint256 currentTokenSell = 0;
 
@@ -42,7 +65,7 @@ contract BinkabiTokenSale is Pausable {
 
         if (tokens > tokenAvailable){
             currentTokenSell  = tokenAvailable;
-            etherToRefund = (tokens - tokenAvailable).div(tokenExchangeRate);
+            etherToRefund = (tokens.sub(tokenAvailable)).div(tokenExchangeRate);
         } else {
             currentTokenSell = tokens;
         }
