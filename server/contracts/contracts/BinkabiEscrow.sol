@@ -6,9 +6,11 @@ contract BinkabiEscrow is Pausable {
     enum State {awaiting_payment, awaiting_delivery, delivering, completed, refunding, refunded, cancel}
 
     BinkabiToken binkabi;
+    address public binkabiTokenAddress;
 
     constructor(BinkabiToken _binkabiTokenAddress) public {
         binkabi = BinkabiToken(_binkabiTokenAddress);
+        binkabiTokenAddress = _binkabiTokenAddress;
     }
 
     struct Order {
@@ -77,6 +79,7 @@ contract BinkabiEscrow is Pausable {
     }
 
     function updatePayment(address _from, uint256 _amount) public {
+        require(msg.sender == binkabiTokenAddress);
         for (uint256 i = 0; i < order_waiting.length; i++) {
             if (orders[order_waiting[i]].buyer == _from && orders[order_waiting[i]].amount_buyer == _amount){
                 orders[order_waiting[i]].payment_buyer = true;

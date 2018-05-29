@@ -49,7 +49,7 @@ module.exports = function (deployer) {
                         "BinkabiEscrow": BinkabiEscrow.address,
                       };
                       let js = JSON.stringify(obj);
-                      fs.writeFile("build/contractAddress.json", js, 'utf8');
+                      fs.writeFileSync("build/contractAddress.json", js, 'utf8');
 
 
                       instance.setTokenEscrowAddress(BinkabiEscrow.address);

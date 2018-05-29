@@ -14,7 +14,7 @@ module.exports = {
     },
     tomo: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, 'https://core.tomocoin.io');
+        return new HDWalletProvider(mnemonic, 'https://testnet.tomochain.com');
       },
       gas: 2900000,
       gasPrice: 120000000,
