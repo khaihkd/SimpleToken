@@ -13,17 +13,17 @@ contract BinkabiTokenSale is Pausable {
     uint256 public totalTokenSold = 0;
 
 
-    uint256 public constant preSaleTime = 1527825600; // 2018-06-01 04:00:00
-    uint256 public constant preSaleEnd = 1528084800; // 2018-06-04 04:00:00
-    uint256 public constant preSaleBonus = 10; // Bonus 10% pre sale
-    uint256 public constant preSaleMinContribution = 50 ether;
-    uint256 public constant preSaleMaxContribution = 100 ether;
-
-
-    uint256 public constant publicSaleTime = 1528171200; // 2018-06-05 04:00:00
-    uint256 public constant publicSaleEnd = 1528603200; // 2018-06-10 04:00:00
-    uint256 public constant publicSaleminContribution = 0.5 ether;
-    uint256 public constant publicSalemaxContribution = 10 ether;
+//    uint256 public constant preSaleTime = 1527465600; // 2018-05-28 00:00:00
+//    uint256 public constant preSaleEnd = 1527552000; // 2018-05-29 00:00:00
+//    uint256 public constant preSaleBonus = 10; // Bonus 10% pre sale
+//    uint256 public constant preSaleMinContribution = 50 ether;
+//    uint256 public constant preSaleMaxContribution = 100 ether;
+//
+//
+//    uint256 public constant publicSaleTime = 1527638400; // 2018-05-30 00:00:00
+//    uint256 public constant publicSaleEnd = 1590796800; // 2020-05-30 00:00:00
+//    uint256 public constant publicSaleminContribution = 0.5 ether;
+//    uint256 public constant publicSalemaxContribution = 10 ether;
 
     BinkabiToken binkabi;
 
@@ -46,17 +46,17 @@ contract BinkabiTokenSale is Pausable {
     }
 
     function createTokens(address _beneficiary, uint256 _value) internal whenNotPaused {
-        require((now >= preSaleTime && now <= preSaleEnd) || (now >= publicSaleTime && now <= publicSaleEnd));
-        
+//         require((now >= preSaleTime && now <= preSaleEnd) || (now >= publicSaleTime && now <= publicSaleEnd));
+
         uint256 tokens = _value.mul(tokenExchangeRate);
-        if (now >= preSaleTime && now <= preSaleEnd) {
-            require(_value >= preSaleMinContribution && _value <= preSaleMaxContribution);
-            tokens = tokens.mul((100 + preSaleBonus) / 100);
-        }
-        
-        else {
-            require(_value >= publicSaleminContribution && _value <= publicSalemaxContribution);
-        }
+//         if (now >= preSaleTime && now <= preSaleEnd) {
+//             require(_value >= preSaleMinContribution && _value <= preSaleMaxContribution);
+//             tokens = tokens.mul((100 + preSaleBonus) / 100);
+//         }
+//
+//         else {
+//             require(_value >= publicSaleminContribution && _value <= publicSalemaxContribution);
+//         }
         uint256 tokenAvailable = totalTokenSale.sub(totalTokenSold);
         uint256 etherToRefund = 0;
         uint256 currentTokenSell = 0;
