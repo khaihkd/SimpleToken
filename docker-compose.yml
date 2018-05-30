@@ -1,18 +1,18 @@
 version: '3'
 services:
-  mongo:
-    image: mongo:latest
-    volumes:
-    - ./db/prod:/data/db
+#  mongo:
+#    image: mongo:latest
+#    volumes:
+#    - ./db/prod:/data/db
   server:
     build: ./server/
     ports:
      - "80:80"
-    environment:
-     - MONGODB_URI=mongodb://mongo:27017/binkabi
+#    environment:
+#     - MONGODB_URI=mongodb://mongo:27017/binkabi
     env_file:
-      - .env
-    links:
-     - mongo
-    depends_on:
-     - mongo
+      - ./server/.env
+#    links:
+#     - mongo
+#    depends_on:
+#     - mongo

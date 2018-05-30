@@ -48,9 +48,9 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    adapter: 'sails-mongo',
+    // adapter: 'sails-mongo',
     // url: 'mongodb://localhost:27017/binkabi',
-    url: process.env.MONGODB_URI,
+    // url: process.env.MONGODB_URI,
 
   },
 

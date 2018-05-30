@@ -10,5 +10,6 @@ RUN npm install -g truffle sails
 
 RUN npm install
 
+COPY .env /build/
 ADD . /build
 CMD sails lift
