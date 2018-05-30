@@ -8,11 +8,14 @@
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
 
-let host = sails.config.truffle.host, port = sails.config.truffle.port,
-  mnemonic = sails.config.truffle.mnemonic
+let mnemonic = sails.config.truffle.mnemonic,
+  network = sails.config.truffle.network,
+  network_url = sails.config.truffle.network_url
 
-let network = 'http://' + host + ':' + port
-let walletProvider = new HDWalletProvider(mnemonic, network)
+if (network === 'development') {
+  network_url = 'http://' + sails.config.truffle.host + ':' + sails.config.truffle.port
+}
+let walletProvider = new HDWalletProvider(mnemonic, network_url)
 let web3 = new Web3(walletProvider)
 
 module.exports = {
