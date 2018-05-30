@@ -18,7 +18,7 @@ module.exports = {
       },
       gas: 2900000,
       gasPrice: 120000000,
-      network_id: 40686
+      network_id: 89
     },
     rinkeby: {
       provider: function() {

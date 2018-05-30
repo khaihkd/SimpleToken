@@ -52,11 +52,15 @@ module.exports = function (deployer) {
                       fs.writeFileSync("build/contractAddress.json", js, 'utf8');
 
 
-                      instance.setTokenEscrowAddress(BinkabiEscrow.address);
-                      instance.setTokenVotingAddress(BinkabiVoting.address);
-                      instance.setTokenMembershipAddress(BinkabiMembership.address);
-                      instance.setBinkabiAddress(BinkabiToken.address);
-                      return instance.setTokenSaleAddress(BinkabiTokenSale.address);
+                      return instance.setTokenEscrowAddress(BinkabiEscrow.address).then(() => {
+                        return instance.setTokenVotingAddress(BinkabiVoting.address);
+                      }).then(() => {
+                        return instance.setTokenMembershipAddress(BinkabiMembership.address);
+                      }).then(() => {
+                        return instance.setBinkabiAddress(BinkabiToken.address);
+                      }).then(() => {
+                        return instance.setTokenSaleAddress(BinkabiTokenSale.address);
+                      });
                     });
                   })
               })
