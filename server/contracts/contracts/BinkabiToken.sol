@@ -33,11 +33,13 @@ contract BinkabiToken is StandardToken, Pausable{
         totalSupply_ = binkabiDeposit;
     }    
 
-    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {        
+    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {    
         if (_to == tokenMembershipAddress) {            
+            mbship = BinkabiMembership(tokenMembershipAddress);      
             mbship.activeMember(msg.sender, _value, block.number);
         }
         if (_to == tokenEscrowAddress) {
+            escrowContract = BinkabiEscrow(binkabiTokenAddress);
             escrowContract.updatePayment(msg.sender, _value);
         }
         return super.transfer(_to, _value);
