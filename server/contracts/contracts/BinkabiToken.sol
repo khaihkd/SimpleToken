@@ -34,11 +34,9 @@ contract BinkabiToken is StandardToken, Pausable{
     }    
 
     function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {        
-        mbship = BinkabiMembership(tokenMembershipAddress);
         if (_to == tokenMembershipAddress) {            
             mbship.activeMember(msg.sender, _value, block.number);
         }
-        escrowContract = BinkabiEscrow(binkabiTokenAddress);
         if (_to == tokenEscrowAddress) {
             escrowContract.updatePayment(msg.sender, _value);
         }
@@ -80,6 +78,7 @@ contract BinkabiToken is StandardToken, Pausable{
     function setTokenEscrowAddress(address _tokenEscrowAddress) public onlyOwner {
         if (_tokenEscrowAddress != address(0)) {
             tokenEscrowAddress = _tokenEscrowAddress;
+            escrowContract = BinkabiEscrow(_tokenEscrowAddress);
         }
     }
     
@@ -106,6 +105,7 @@ contract BinkabiToken is StandardToken, Pausable{
     function setTokenMembershipAddress(address _tokenMembershipAddress) public onlyOwner {
         if (_tokenMembershipAddress != address(0)) {
             tokenMembershipAddress = _tokenMembershipAddress;
+            mbship = BinkabiMembership(_tokenMembershipAddress);
         }
     }
     

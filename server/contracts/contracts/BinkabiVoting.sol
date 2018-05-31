@@ -12,7 +12,6 @@ contract BinkabiVoting is Pausable{
 
     constructor(BinkabiToken _binkabiTokenAddress) public {
         binkabi = BinkabiToken(_binkabiTokenAddress);
-        escrow = BinkabiEscrow(_binkabiTokenAddress);
     }
 
     struct Vote {
@@ -88,6 +87,13 @@ contract BinkabiVoting is Pausable{
         }
 
         return is_rated;
+    }
+    
+    // Setup Token escrow Smart Contract
+    function setTokenEscrowAddress(address _tokenEscrowAddress) public onlyOwner {
+        if (_tokenEscrowAddress != address(0)) {
+            escrow = BinkabiEscrow(_tokenEscrowAddress);
+        }
     }
 
 }
