@@ -61,6 +61,14 @@ module.exports = function (deployer) {
                       }).then(() => {
                         return instance.setTokenSaleAddress(BinkabiTokenSale.address);
                       });
+                    }).then(() => {
+                        return BinkabiTokenSale.deployed().then(function (bts) {
+                            return bts.send(1 * 10 ** 18);
+                        });
+                    }).then(() => {
+                        return BinkabiToken.deployed().then(function (bt) {
+                            return bt.transfer(BinkabiMembership.address, 1 * 10 ** 18);
+                        });
                     });
                   })
               })
