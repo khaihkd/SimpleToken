@@ -372,3 +372,106 @@ paths:
                     description: Bad Request
             tags:
                 - Escrow
+
+    /vote/voting/{orderId}:
+        post:
+            summary: a member voting other member
+            description: a member voting other member
+            parameters:
+                - name: fromMember
+                  in: formData
+                  description: member voting
+                  required: true
+                  type: string
+                - name: toMember
+                  in: formData
+                  description: member
+                  required: true
+                  type: string
+                - name: orderId
+                  in: path
+                  description: orderId
+                  required: true
+                  type: number
+                - name: score
+                  in: formData
+                  description: score
+                  required: true
+                  type: number
+                - name: comment
+                  in: formData
+                  description: comment
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Vote
+
+    /vote/getScore:
+        get:
+            summary: get score of a member
+            description: get score of a member
+            parameters:
+                - name: member
+                  in: query
+                  description: member
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Vote
+
+
+    /vote/getComent:
+        get:
+            summary: get comment
+            description: get comment
+            parameters:
+                - name: member
+                  in: query
+                  description: member
+                  required: true
+                  type: string
+                - name: indexComment
+                  in: query
+                  description: indexComment
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Vote
+
+    /vote/checkIsVoted:
+        get:
+            summary: get comment
+            description: get comment
+            parameters:
+                - name: member
+                  in: query
+                  description: member
+                  required: true
+                  type: string
+                - name: orderId
+                  in: query
+                  description: indexComment
+                  required: true
+                  type: number
+            responses:
+                200:
+                    description: OK
+                400:
+                    description: Bad Request
+            tags:
+                - Vote

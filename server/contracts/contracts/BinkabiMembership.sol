@@ -64,7 +64,7 @@ contract BinkabiMembership is Pausable {
 
     function activeMember(address _member, uint256 _amount, uint _block_number) onlyBinkabi public {
         members[_member].isActive = true;
-        members[_member].amount = _amount;
+        members[_member].amount = members[_member].amount.add(_amount);
         members[_member].blockActive = _block_number;
         emit Active(_member, _amount);
     }

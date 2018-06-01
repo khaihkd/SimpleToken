@@ -15,60 +15,55 @@ contract BinkabiVoting is Pausable{
     }
 
     struct Vote {
-        uint256 order_id;
-        uint256 rate;
+        uint256 orderId;
+        uint256 score;
         address voter;
         string description;
-        uint256 created_at;
+        uint256 createdAt;
     }
 
     struct VoteAvg {
-        uint256 total_score;
-        uint256 total_vote;
+        uint256 totalScore;
+        uint256 totalVote;
     }
 
     mapping (address => Vote[]) voting;
-    mapping (address => VoteAvg) vote_avg;
+    mapping (address => VoteAvg) voteAvg;
 
-    function rating(address _from, address _to, uint256 _order_id, uint256 score, string comments) public returns(bool) {
-        require(score > 0 && score < 5);
+    function rating(address _from, address _to, uint256 _orderId, uint256 _score, string _comments) public returns(bool) {
+        require(_score >= 0 && _score <= 5);
         require(_from != _to);
-        address _buyer = escrow.getBuyerOrder(_order_id);
-        address _seller = escrow.getSellerOrder(_order_id);
+        address _buyer = escrow.getBuyerOrder(_orderId);
+        address _seller = escrow.getSellerOrder(_orderId);
         require((_buyer == _from && _seller == _to) || (_buyer == _to && _seller == _from));
         
         
         for (uint256 i = 0; i < voting[_to].length; i++) {
-            if (voting[_to][i].voter == _from && voting[_to][i].order_id == _order_id){
+            if (voting[_to][i].voter == _from && voting[_to][i].orderId == _orderId){
                 return false;
             }
         }
 
         voting[_to].push(Vote({
-            order_id: _order_id,
-            rate: score,
+            orderId: _orderId,
+            score: _score,
             voter: _from,
-            description: comments,
-            created_at: now
+            description: _comments,
+            createdAt: now
         }));
 
-        vote_avg[_to].total_score.add(score);
-        vote_avg[_to].total_vote.add(1);
+        voteAvg[_to].totalScore.add(_score);
+        voteAvg[_to].totalVote.add(1);
         
         return true;
 
     }
 
-    function getRating(address _delegate) public view returns(uint256) {
-        uint256 total_vote = vote_avg[_delegate].total_vote;
-        uint256 total_score = vote_avg[_delegate].total_score;
-        uint256 rate = total_score.div(total_vote);
-        return rate;
-    }
-
-    function getTotalRating(address _delegate) public view returns(uint256) {
-        uint256 total_vote = vote_avg[_delegate].total_vote;
-        return total_vote;
+    function getRating(address _delegate) public view returns(uint256, uint256, uint256) {
+        uint256 _totalVote = voteAvg[_delegate].totalVote;
+        uint256 _totalScore = voteAvg[_delegate].totalScore;
+        uint256 _score = _totalScore.div(_totalVote);
+        return (_totalVote, _totalScore, _score);
     }
 
     function getComment(address _delegate, uint256 _index) public view returns(string _comment) {
@@ -76,17 +71,16 @@ contract BinkabiVoting is Pausable{
         return _comment;
     }
 
-    function isRated(address _delegate) public view returns(bool) {
+    function isVoted(address _delegate, uint256 _orderId) public view returns(bool) {
         require(msg.sender != _delegate);
-        bool is_rated = false;
         
         for (uint256 i = 0; i < voting[_delegate].length; i++) {
-            if (voting[_delegate][i].voter == msg.sender){
-                is_rated = true;
+            if (voting[_delegate][i].voter == msg.sender && voting[_delegate][i].orderId == _orderId){
+                return true;
             }
         }
 
-        return is_rated;
+        return false;
     }
     
     // Setup Token escrow Smart Contract

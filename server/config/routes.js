@@ -40,6 +40,11 @@ module.exports.routes = {
   'POST /escrow/completedOrder/:orderId': {action: 'Escrow/completedOrder'},
   'POST /escrow/uploadDocument/:orderId': {action: 'Escrow/uploadDocument'},
 
+  'POST /vote/voting/:orderId': {action: 'Voting/voting'},
+  'GET /vote/getScore': {action: 'Voting/getScore'},
+  'GET /vote/getComment': {action: 'Voting/getComment'},
+  'GET /vote/checkIsVoted': {action: 'Voting/checkIsVoted'},
+
   'GET /swagger/docs': {action: 'Swagger/docs'},
   'GET /getAllContract': {action: 'Base/getAllContract'},
 

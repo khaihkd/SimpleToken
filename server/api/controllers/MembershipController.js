@@ -60,8 +60,12 @@ module.exports = {
     let membership = await Membership.deployed()
     try {
       let r = await membership.getAmount(walletAddress, {from: await web3.eth.getCoinbase()})
-      sails.log(r)
-      return res.json({error: false, message: 'Get balance is successful', balance: parseFloat(r[0]) / (10 ** 18), blockActive: r[1], currentBlock: r[2]})
+      let blockActive = parseInt(r[1]), currentBlock = parseInt(r[2])
+      return res.json({
+        error: false,
+        message: 'Get balance is successful',
+        balance: parseFloat(r[0]) / (10 ** 18)
+      })
     }
     catch (e) {
       sails.log(e)
@@ -83,7 +87,15 @@ module.exports = {
     let membership = await Membership.deployed()
     try {
       let r = await membership.isMembership(walletAddress, {from: await web3.eth.getCoinbase()})
-      return res.json({error: false, message: 'Check membership is successful', isMember: r[0], currentBlock: r[1], blockActive: r[2]})
+      let blockActive = parseInt(r[1]), currentBlock = parseInt(r[2])
+      return res.json({
+        error: false,
+        message: 'Check membership is successful',
+        isMember: r[0],
+        blockActive: blockActive,
+        currentBlock: currentBlock,
+        confirmations: currentBlock - blockActive
+      })
     }
     catch (e) {
       sails.log(e)
