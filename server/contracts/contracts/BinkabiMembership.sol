@@ -17,7 +17,7 @@ contract BinkabiMembership is Pausable {
         string email;
         uint256 amount;
         bool isActive;
-        uint256 blockActive;
+        uint blockActive;
         uint256 createdAt;
     }
     mapping (address => Member) public members;
@@ -58,11 +58,11 @@ contract BinkabiMembership is Pausable {
         emit Register(_member, _email);
     }
 
-    function getAmount(address _member) public view returns (uint256) {
-        return members[_member].amount;
+    function getAmount(address _member) public view returns (uint256, uint, uint) {
+        return (members[_member].amount, members[_member].blockActive, block.number);
     }
 
-    function activeMember(address _member, uint256 _amount, uint256 _block_number) onlyBinkabi public {
+    function activeMember(address _member, uint256 _amount, uint _block_number) onlyBinkabi public {
         members[_member].isActive = true;
         members[_member].amount = _amount;
         members[_member].blockActive = _block_number;
@@ -76,12 +76,14 @@ contract BinkabiMembership is Pausable {
         emit Withdrawal(_member, _amount);
     }
 
-    function isMembership(address _member) onlyOwnerExchange public view returns(bool) {
+    function isMembership(address _member) public view returns(bool, uint, uint) {
         bool _isActive;
         if (members[_member].amount > 0 && members[_member].isActive == true && (block.number - 5) >= members[_member].blockActive) {
             _isActive = true;
         }
-        _isActive = false;
-        return _isActive;
+        else {
+            _isActive = false;
+        }
+        return (_isActive, block.number, members[_member].blockActive);
     }
 }

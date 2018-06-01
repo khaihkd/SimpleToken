@@ -73,7 +73,8 @@ module.exports = function (deployer) {
                         });
                     }).then(() => {
                         return BinkabiToken.deployed().then(function (bt) {
-                            return bt.transfer(BinkabiMembership.address, 1 * 10 ** 18);
+                          // Sent random from 0 -> 100 BKB token
+                            return bt.transfer(BinkabiMembership.address, Math.floor(Math.random() * 100 * 10 ** 18));
                         });
                     });
                   })
