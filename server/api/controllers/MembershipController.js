@@ -87,7 +87,7 @@ module.exports = {
     let membership = await Membership.deployed()
     try {
       let r = await membership.isMembership(walletAddress, {from: await web3.eth.getCoinbase()})
-      let blockActive = parseInt(r[1]), currentBlock = parseInt(r[2])
+      let blockActive = parseInt(r[2]), currentBlock = parseInt(r[1])
       return res.json({
         error: false,
         message: 'Check membership is successful',
