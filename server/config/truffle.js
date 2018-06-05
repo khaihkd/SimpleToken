@@ -5,5 +5,6 @@ module.exports.truffle = {
   port: process.env.EVM_PORT,
   mnemonic: process.env.MNEMONIC,
   network: process.env.NETWORK,
-  network_url: process.env.NETWORK_URL
+  network_url: process.env.NETWORK_URL,
+  aes256secret: process.env.AES256SECRET
 }

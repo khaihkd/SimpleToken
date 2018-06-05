@@ -47,6 +47,7 @@ module.exports.routes = {
 
   'GET /swagger/docs': {action: 'Swagger/docs'},
   'GET /getAllContract': {action: 'Base/getAllContract'},
+  'POST /testSecure': {action: 'Base/testSecure'},
 
   /***************************************************************************
   *                                                                          *

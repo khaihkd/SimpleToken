@@ -34,6 +34,10 @@ module.exports = {
     let currentWallet = await web3.eth.getCoinbase()
 
     web3.eth.sendTransaction({to: walletAddress, from: currentWallet, value: web3.toWei("1", "ether")})
+  },
+
+  testSecure: async function(req, res) {
+    return res.json({error: false, message: 'Congratulation! Authorization is correct'})
   }
 
 };

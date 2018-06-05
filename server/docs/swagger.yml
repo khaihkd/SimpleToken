@@ -222,39 +222,6 @@ paths:
             tags:
                 - Escrow
 
-    /escrow/refundedOrder/{orderId}:
-        post:
-            summary: refunded order
-            description: Seller confirm receive his product
-            parameters:
-                - name: orderId
-                  in: path
-                  description: orderId
-                  required: true
-                  type: number
-                - name: fromMember
-                  in: formData
-                  description: Wallet address of member (buyer/seller)
-                  required: true
-                  type: string
-                - name: refundBuyer
-                  in: formData
-                  description: hash of document
-                  required: true
-                  type: number
-                - name: refundSeller
-                  in: formData
-                  description: hash of document
-                  required: true
-                  type: number
-            responses:
-                200:
-                    description: OK
-                400:
-                    description: Bad Request
-            tags:
-                - Escrow
-
     /escrow/confirmRefunded/{orderId}:
         post:
             summary: refunded order
