@@ -5,13 +5,13 @@ services:
 #    volumes:
 #    - ./db/prod:/data/db
   server:
-    build: ./server/
+    build: .
     ports:
      - "80:80"
 #    environment:
 #     - MONGODB_URI=mongodb://mongo:27017/privateToken
     env_file:
-      - ./server/.env
+      - ./.env
 #    links:
 #     - mongo
 #    depends_on:
