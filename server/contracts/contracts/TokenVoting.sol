@@ -1,17 +1,17 @@
 pragma solidity ^0.4.20;
 import './interfaces/Pausable.sol';
 import './libs/SafeMath.sol';
-import './BinkabiToken.sol';
-import './BinkabiEscrow.sol';
+import './PrivateToken.sol';
+import './TokenEscrow.sol';
 
-contract BinkabiVoting is Pausable{
+contract TokenVoting is Pausable{
     using SafeMath for uint256;
 
-    BinkabiToken binkabi;
-    BinkabiEscrow escrow;
+    PrivateToken privateToken;
+    TokenEscrow escrow;
 
-    constructor(BinkabiToken _binkabiTokenAddress) public {
-        binkabi = BinkabiToken(_binkabiTokenAddress);
+    constructor(PrivateToken _privateTokenTokenAddress) public {
+        privateToken = PrivateToken(_privateTokenTokenAddress);
     }
 
     struct Vote {
@@ -86,7 +86,7 @@ contract BinkabiVoting is Pausable{
     // Setup Token escrow Smart Contract
     function setTokenEscrowAddress(address _tokenEscrowAddress) public onlyOwner {
         if (_tokenEscrowAddress != address(0)) {
-            escrow = BinkabiEscrow(_tokenEscrowAddress);
+            escrow = TokenEscrow(_tokenEscrowAddress);
         }
     }
 

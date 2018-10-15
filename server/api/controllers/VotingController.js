@@ -18,8 +18,8 @@ let walletProvider = new HDWalletProvider(mnemonic, network_url)
 let web3 = new Web3(walletProvider)
 
 let contract = require('truffle-contract')
-let BinkabiVoting = require('../../contracts/build/contracts/BinkabiVoting.json')
-let Voting = contract(BinkabiVoting)
+let TokenVoting = require('../../contracts/build/contracts/TokenVoting.json')
+let Voting = contract(TokenVoting)
 Voting.setProvider(web3.currentProvider)
 
 module.exports = {

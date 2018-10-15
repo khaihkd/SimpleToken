@@ -9,7 +9,7 @@ services:
     ports:
      - "80:80"
 #    environment:
-#     - MONGODB_URI=mongodb://mongo:27017/binkabi
+#     - MONGODB_URI=mongodb://mongo:27017/privateToken
     env_file:
       - ./server/.env
 #    links:

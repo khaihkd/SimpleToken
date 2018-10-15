@@ -18,8 +18,8 @@ let walletProvider = new HDWalletProvider(mnemonic, network_url)
 let web3 = new Web3(walletProvider)
 
 let contract = require('truffle-contract')
-let BinkabiEscrow = require('../../contracts/build/contracts/BinkabiEscrow.json')
-let Escrow = contract(BinkabiEscrow)
+let TokenEscrow = require('../../contracts/build/contracts/TokenEscrow.json')
+let Escrow = contract(TokenEscrow)
 Escrow.setProvider(web3.currentProvider)
 
 

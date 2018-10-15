@@ -1,16 +1,16 @@
 pragma solidity ^0.4.20;
 import './interfaces/Pausable.sol';
-import './BinkabiToken.sol';
+import './PrivateToken.sol';
 
-contract BinkabiEscrow is Pausable {
+contract TokenEscrow is Pausable {
     enum State {awaiting_payment, awaiting_delivery, delivering, completed, refunding, refunded, cancel}
 
-    BinkabiToken binkabi;
-    address public binkabiTokenAddress;
+    PrivateToken privateToken;
+    address public privateTokenTokenAddress;
 
-    constructor(BinkabiToken _binkabiTokenAddress) public {
-        binkabi = BinkabiToken(_binkabiTokenAddress);
-        binkabiTokenAddress = _binkabiTokenAddress;
+    constructor(PrivateToken _privateTokenTokenAddress) public {
+        privateToken = PrivateToken(_privateTokenTokenAddress);
+        privateTokenTokenAddress = _privateTokenTokenAddress;
     }
 
     struct Order {
@@ -69,7 +69,7 @@ contract BinkabiEscrow is Pausable {
         orders[_order_id].state = State.cancel;
 
         if (_refund_buyer > 0 || _refund_seller > 0){
-            binkabi.escrow(orders[_order_id].buyer, orders[_order_id].seller, _refund_buyer, _refund_seller);
+            privateToken.escrow(orders[_order_id].buyer, orders[_order_id].seller, _refund_buyer, _refund_seller);
         }
         
     }
@@ -79,7 +79,7 @@ contract BinkabiEscrow is Pausable {
     }
 
     function updatePayment(address _from, uint256 _amount) public {
-        require(msg.sender == binkabiTokenAddress);
+        require(msg.sender == privateTokenTokenAddress);
         for (uint256 i = 0; i < order_waiting.length; i++) {
             if (orders[order_waiting[i]].buyer == _from && orders[order_waiting[i]].amount_buyer == _amount){
                 orders[order_waiting[i]].payment_buyer = true;
@@ -109,7 +109,7 @@ contract BinkabiEscrow is Pausable {
     function refundedOrder(address _from, uint256 _order_id, uint256 _amount_buyer, uint256 _amount_seller) public returns (bool) {
         require(_from == orders[_order_id].seller);
         orders[_order_id].state = State.refunded;
-        binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);
+        privateToken.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);
     }
 
     function deliverOrder(address _from, uint256 _order_id, string _hash) public {
@@ -123,7 +123,7 @@ contract BinkabiEscrow is Pausable {
         orders[_order_id].state = State.completed;          
         orders[_order_id].docs_buyer.push(_hash);
 
-        binkabi.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);        
+        privateToken.escrow(orders[_order_id].buyer, _from, _amount_buyer, _amount_seller);
     }
 
     function uploadDocument(address _from, uint256 _order_id, string _hash) public {

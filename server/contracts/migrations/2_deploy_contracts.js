@@ -1,8 +1,8 @@
-const BinkabiToken = artifacts.require("BinkabiToken");
-const BinkabiTokenSale = artifacts.require("BinkabiTokenSale");
-const BinkabiEscrow = artifacts.require("BinkabiEscrow");
-const BinkabiVoting = artifacts.require("BinkabiVoting");
-const BinkabiMembership = artifacts.require("BinkabiMembership");
+const PrivateToken = artifacts.require("PrivateToken");
+const PrivateTokenSale = artifacts.require("PrivateTokenSale");
+const TokenEscrow = artifacts.require("TokenEscrow");
+const TokenVoting = artifacts.require("TokenVoting");
+const Membership = artifacts.require("Membership");
 const MultiSigWallet = artifacts.require("MultiSigWallet.sol");
 
 let fs = require('fs')
@@ -14,67 +14,67 @@ module.exports = function (deployer) {
     "0x9d281b5b56Bccc7D08B3119ED3692e83cF9f6199"
   ], 2).then(() => {
     return deployer.deploy(
-      BinkabiToken,
+      PrivateToken,
       MultiSigWallet.address
     ).then(() => {
       return deployer.deploy(
-        BinkabiTokenSale,
-        BinkabiToken.address,
+        PrivateTokenSale,
+        PrivateToken.address,
         MultiSigWallet.address
       )
         .then(() => {
           return deployer.deploy(
-            BinkabiEscrow,
-            BinkabiToken.address
+            TokenEscrow,
+            PrivateToken.address
           ).then(() => {
             return deployer.deploy(
-              BinkabiVoting,
-              BinkabiToken.address
+              TokenVoting,
+              PrivateToken.address
             )
             .then(() => {
-              return BinkabiVoting.deployed().then(function(vt) {
-                return vt.setTokenEscrowAddress(BinkabiEscrow.address)
+              return TokenVoting.deployed().then(function(vt) {
+                return vt.setTokenEscrowAddress(TokenEscrow.address)
               })
             })
 
               .then(() => {
                 return deployer.deploy(
-                  BinkabiMembership,
-                  BinkabiToken.address
+                  Membership,
+                  PrivateToken.address
                 )
 
                   .then(() => {
 
-                    return BinkabiToken.deployed().then(function (instance) {
+                    return PrivateToken.deployed().then(function (instance) {
 
                       let obj = {
-                        "BinkabiToken": BinkabiToken.address,
-                        "BinkabiTokenSale": BinkabiTokenSale.address,
-                        "BinkabiMembership": BinkabiMembership.address,
-                        "BinkabiVoting": BinkabiVoting.address,
-                        "BinkabiEscrow": BinkabiEscrow.address,
+                        "PrivateToken": PrivateToken.address,
+                        "PrivateTokenSale": PrivateTokenSale.address,
+                        "Membership": Membership.address,
+                        "TokenVoting": TokenVoting.address,
+                        "TokenEscrow": TokenEscrow.address,
                       };
                       let js = JSON.stringify(obj);
                       fs.writeFileSync("build/contractAddress.json", js, 'utf8');
 
 
-                      return instance.setTokenEscrowAddress(BinkabiEscrow.address).then(() => {
-                        return instance.setTokenVotingAddress(BinkabiVoting.address);
+                      return instance.setTokenEscrowAddress(TokenEscrow.address).then(() => {
+                        return instance.setTokenVotingAddress(TokenVoting.address);
                       }).then(() => {
-                        return instance.setTokenMembershipAddress(BinkabiMembership.address);
+                        return instance.setTokenMembershipAddress(Membership.address);
                       }).then(() => {
-                        return instance.setBinkabiAddress(BinkabiToken.address);
+                        return instance.setPrivateTokenAddress(PrivateToken.address);
                       }).then(() => {
-                        return instance.setTokenSaleAddress(BinkabiTokenSale.address);
+                        return instance.setTokenSaleAddress(PrivateTokenSale.address);
                       });
                     }).then(() => {
-                        return BinkabiTokenSale.deployed().then(function (bts) {
+                        return PrivateTokenSale.deployed().then(function (bts) {
                             return bts.send(1 * 10 ** 18);
                         });
                     }).then(() => {
-                        return BinkabiToken.deployed().then(function (bt) {
-                          // Sent random from 0 -> 100 BKB token
-                            return bt.transfer(BinkabiMembership.address, Math.floor(Math.random() * 100 * 10 ** 18));
+                        return PrivateToken.deployed().then(function (bt) {
+                          // Sent random from 0 -> 100 PVT token
+                            return bt.transfer(Membership.address, Math.floor(Math.random() * 100 * 10 ** 18));
                         });
                     });
                   })

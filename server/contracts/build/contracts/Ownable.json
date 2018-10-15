@@ -41,9 +41,9 @@
   "sourceMap": "198:344:6:-;;;248:56;8:9:-1;5:2;;;30:1;27;20:12;5:2;248:56:6;287:10;279:5;;:18;;;;;;;;;;;;;;;;;;198:344;;;;;;",
   "deployedSourceMap": "198:344:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;221:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:20:6;;;;;;;;;;;;;;;;;;;;;;;;;;;393:147;;8:9:-1;5:2;;;30:1;27;20:12;5:2;393:147:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;221:20;;;;;;;;;;;;;:::o;393:147::-;363:5;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;489:1;469:22;;:8;:22;;;;465:69;;;515:8;507:5;;:16;;;;;;;;;;;;;;;;;;465:69;393:147;:::o",
   "source": "pragma solidity ^0.4.20;\n\n/*\n * Ownable\n *\n * Base contract with an owner.\n * Provides onlyOwner modifier, which prevents function from running if it is called by anyone other than the owner.\n */\n\n\ncontract Ownable {\n    address public owner;\n\n    constructor() public {\n        owner = msg.sender;\n    }\n\n    modifier onlyOwner() {\n        require(msg.sender == owner);\n        _;\n    }\n\n    function transferOwnership(address newOwner) public onlyOwner {\n        if (newOwner != address(0)) {\n            owner = newOwner;\n        }\n    }\n}",
-  "sourcePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Ownable.sol",
+  "sourcePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Ownable.sol",
   "ast": {
-    "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Ownable.sol",
+    "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         2028
@@ -567,7 +567,7 @@
     "src": "0:542:6"
   },
   "legacyAST": {
-    "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Ownable.sol",
+    "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         2028

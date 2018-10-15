@@ -79,8 +79,8 @@ paths:
 
     /membership/withdrawal:
         post:
-            summary: withdrawal token from binkabi contract
-            description: withdrawal token from binkabi contract
+            summary: withdrawal token from privateToken contract
+            description: withdrawal token from privateToken contract
             parameters:
                 - name: walletAddress
                   in: formData
@@ -127,12 +127,12 @@ paths:
                   type: string
                 - name: amountBuyer
                   in: formData
-                  description: Amount BKB lock up of buyer
+                  description: Amount PVT lock up of buyer
                   required: true
                   type: number
                 - name: amountSeller
                   in: formData
-                  description: Amount BKB lock up of seller
+                  description: Amount PVT lock up of seller
                   required: true
                   type: number
             responses:
@@ -178,12 +178,12 @@ paths:
                   type: string
                 - name: refundBuyer
                   in: formData
-                  description: Amount BKB refund to buyer
+                  description: Amount PVT refund to buyer
                   required: true
                   type: number
                 - name: refundSeller
                   in: formData
-                  description: Amount BKB refund to seller
+                  description: Amount PVT refund to seller
                   required: true
                   type: number
             responses:

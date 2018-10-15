@@ -2,12 +2,12 @@ pragma solidity ^0.4.20;
 import './interfaces/Pausable.sol';
 import './libs/SafeMath.sol';
 import './libs/SafeMath.sol';
-import './BinkabiToken.sol';
+import './PrivateToken.sol';
 
 
-contract BinkabiTokenSale is Pausable {
+contract PrivateTokenSale is Pausable {
     using SafeMath for uint256;
-    address public binkabiDepositAddress;
+    address public privateTokenDepositAddress;
     uint256 public constant tokenExchangeRate = 1000;
     uint256 public constant totalTokenSale = 50000000 * 10 ** 18;
     uint256 public totalTokenSold = 0;
@@ -25,20 +25,20 @@ contract BinkabiTokenSale is Pausable {
 //    uint256 public constant publicSaleminContribution = 0.5 ether;
 //    uint256 public constant publicSalemaxContribution = 10 ether;
 
-    BinkabiToken binkabi;
+    PrivateToken privateToken;
 
-    event MintBinkabi(address from, address to, uint256 val);
-    event RefundBinkabi(address to, uint256 val);
-    event LogBinkabi(address add, uint256 val);
+    event MintPrivateToken(address from, address to, uint256 val);
+    event RefundPrivateToken(address to, uint256 val);
+    event LogPrivateToken(address add, uint256 val);
 
-    constructor(BinkabiToken _binkabiTokenAddress, address _binkabiDepositAddress) public {
-        binkabi = BinkabiToken(_binkabiTokenAddress);
-        binkabiDepositAddress = _binkabiDepositAddress;
+    constructor(PrivateToken _privateTokenTokenAddress, address _privateTokenDepositAddress) public {
+        privateToken = PrivateToken(_privateTokenTokenAddress);
+        privateTokenDepositAddress = _privateTokenDepositAddress;
     }
 
     function buy(address to, uint256 val) internal returns (bool success) {
-        emit MintBinkabi(binkabiDepositAddress, to, val);
-        return binkabi.mint(to, val);
+        emit MintPrivateToken(privateTokenDepositAddress, to, val);
+        return privateToken.mint(to, val);
     }
 
     function () public payable {
@@ -74,11 +74,11 @@ contract BinkabiTokenSale is Pausable {
         totalTokenSold += currentTokenSell;
 
         if (etherToRefund > 0){
-            emit RefundBinkabi(msg.sender, etherToRefund);
+            emit RefundPrivateToken(msg.sender, etherToRefund);
             msg.sender.transfer(etherToRefund);
         }
 
-        binkabiDepositAddress.transfer(msg.value);
+        privateTokenDepositAddress.transfer(msg.value);
         return;
     }
 }

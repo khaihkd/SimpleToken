@@ -2,12 +2,12 @@ pragma solidity ^0.4.20;
 
 import './interfaces/Pausable.sol';
 import './libs/SafeMath.sol';
-import './BinkabiToken.sol';
+import './PrivateToken.sol';
 
-contract BinkabiMembership is Pausable {
+contract Membership is Pausable {
     using SafeMath for uint256;
     mapping (address => uint256) balances;
-    BinkabiToken binkabi;
+    PrivateToken privateToken;
 
     event Withdrawal(address _holder, uint256 _amount);
     event Active(address _holder, uint256 _amount);
@@ -23,21 +23,21 @@ contract BinkabiMembership is Pausable {
     mapping (address => Member) public members;
     string[] public emails;
     mapping (address => uint256) public memberActive;
-    address public binkabiTokenAddress;
+    address public privateTokenTokenAddress;
 
     modifier onlyOwnerExchange() {
         require(msg.sender == 0xD9C69E9E6949BDbf900d3A1639041069fA73C44f);
         _;
     }
 
-    modifier onlyBinkabi() {
-        require(msg.sender == binkabiTokenAddress);
+    modifier onlyPrivateToken() {
+        require(msg.sender == privateTokenTokenAddress);
         _;
     }
 
-    constructor(BinkabiToken _binkabiTokenAddress) public {
-        binkabi = BinkabiToken(_binkabiTokenAddress);
-        binkabiTokenAddress = _binkabiTokenAddress;
+    constructor(PrivateToken _privateTokenTokenAddress) public {
+        privateToken = PrivateToken(_privateTokenTokenAddress);
+        privateTokenTokenAddress = _privateTokenTokenAddress;
     }
 
     function registerMember(string _email, address _member) onlyOwnerExchange public {
@@ -62,7 +62,7 @@ contract BinkabiMembership is Pausable {
         return (members[_member].amount, members[_member].blockActive, block.number);
     }
 
-    function activeMember(address _member, uint256 _amount, uint _block_number) onlyBinkabi public {
+    function activeMember(address _member, uint256 _amount, uint _block_number) onlyPrivateToken public {
         members[_member].isActive = true;
         members[_member].amount = members[_member].amount.add(_amount);
         members[_member].blockActive = _block_number;
@@ -71,7 +71,7 @@ contract BinkabiMembership is Pausable {
 
     function memberWithdrawal(address _member, uint256 _amount) onlyOwnerExchange public {
         require(members[_member].amount >= _amount);
-        binkabi.withdrawal(_member, _amount);
+        privateToken.withdrawal(_member, _amount);
         members[_member].amount = members[_member].amount.sub(_amount);
         emit Withdrawal(_member, _amount);
     }

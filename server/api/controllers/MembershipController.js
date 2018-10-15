@@ -18,8 +18,8 @@ let walletProvider = new HDWalletProvider(mnemonic, network_url)
 let web3 = new Web3(walletProvider)
 
 let contract = require('truffle-contract')
-let BinkabiMembership = require('../../contracts/build/contracts/BinkabiMembership.json')
-let Membership = contract(BinkabiMembership)
+let Membership = require('../../contracts/build/contracts/Membership.json')
+let Membership = contract(Membership)
 Membership.setProvider(web3.currentProvider)
 
 module.exports = {

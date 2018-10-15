@@ -89,9 +89,9 @@
   "sourceMap": "165:871:7:-;;;262:5;241:26;;;;;;;;;;;;;;;;;;;;287:10:6;279:5;;:18;;;;;;;;;;;;;;;;;;165:871:7;;;;;;",
   "deployedSourceMap": "165:871:7:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;896:138;;8:9:-1;5:2;;;30:1;27;20:12;5:2;896:138:7;;;;;;;;;;;;;;;;;;;;;;;;;;;241:26;;8:9:-1;5:2;;;30:1;27;20:12;5:2;241:26:7;;;;;;;;;;;;;;;;;;;;;;;;;;;672:136;;8:9:-1;5:2;;;30:1;27;20:12;5:2;672:136:7;;;;;;;;;;;;;;;;;;;;;;;;;;;221:20:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:20:6;;;;;;;;;;;;;;;;;;;;;;;;;;;393:147;;8:9:-1;5:2;;;30:1;27;20:12;5:2;393:147:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;896:138:7;952:4;363:5:6;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;562:6:7;;;;;;;;;;;554:15;;;;;;;;977:5;968:6;;:14;;;;;;;;;;;;;;;;;;997:9;;;;;;;;;;1023:4;1016:11;;896:138;:::o;241:26::-;;;;;;;;;;;;;:::o;672:136::-;729:4;363:5:6;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;404:6:7;;;;;;;;;;;403:7;395:16;;;;;;;;754:4;745:6;;:13;;;;;;;;;;;;;;;;;;773:7;;;;;;;;;;797:4;790:11;;672:136;:::o;221:20:6:-;;;;;;;;;;;;;:::o;393:147::-;363:5;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;489:1;469:22;;:8;:22;;;;465:69;;;515:8;507:5;;:16;;;;;;;;;;;;;;;;;;465:69;393:147;:::o",
   "source": "pragma solidity ^0.4.20;\nimport './Ownable.sol';\n\n/**\n * @title Pausable\n * @dev Base contract which allows children to implement an emergency stop mechanism.\n */\n\n\ncontract Pausable is Ownable {\n    event Pause();\n    event Unpause();\n\n    bool public paused = false;\n\n\n    /**\n    * @dev modifier to allow actions only when the contract IS paused\n    */\n    modifier whenNotPaused() {\n        require(!paused);\n        _;\n    }\n\n    /**\n    * @dev modifier to allow actions only when the contract IS NOT paused\n    */\n    modifier whenPaused {\n        require(paused);\n        _;\n    }\n\n    /**\n    * @dev called by the owner to pause, triggers stopped state\n    */\n    function pause() public onlyOwner whenNotPaused returns (bool) {\n        paused = true;\n        emit Pause();\n        return true;\n    }\n\n    /**\n    * @dev called by the owner to unpause, returns to normal state\n    */\n    function unpause() public onlyOwner whenPaused returns (bool) {\n        paused = false;\n        emit Unpause();\n        return true;\n    }\n}",
-  "sourcePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Pausable.sol",
+  "sourcePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Pausable.sol",
   "ast": {
-    "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Pausable.sol",
+    "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Pausable.sol",
     "exportedSymbols": {
       "Pausable": [
         2096
@@ -112,7 +112,7 @@
         "src": "0:24:7"
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Ownable.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Ownable.sol",
         "file": "./Ownable.sol",
         "id": 2031,
         "nodeType": "ImportDirective",
@@ -840,7 +840,7 @@
     "src": "0:1036:7"
   },
   "legacyAST": {
-    "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Pausable.sol",
+    "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Pausable.sol",
     "exportedSymbols": {
       "Pausable": [
         2096
@@ -861,7 +861,7 @@
         "src": "0:24:7"
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Ownable.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Ownable.sol",
         "file": "./Ownable.sol",
         "id": 2031,
         "nodeType": "ImportDirective",

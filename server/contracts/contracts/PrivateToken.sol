@@ -1,45 +1,45 @@
 pragma solidity ^0.4.20;
 import './interfaces/StandardToken.sol';
 import './interfaces/Pausable.sol';
-import './BinkabiMembership.sol';
-import './BinkabiEscrow.sol';
+import './Membership.sol';
+import './TokenEscrow.sol';
 
-contract BinkabiToken is StandardToken, Pausable{
-    string public constant name = "Binkabi";
-    string public constant symbol = "BKB";
+contract PrivateToken is StandardToken, Pausable{
+    string public constant name = "PrivateToken";
+    string public constant symbol = "PVT";
     uint256 public constant decimals = 18;
-    BinkabiMembership mbship;
-    BinkabiEscrow escrowContract;
+    Membership mbship;
+    TokenEscrow escrowContract;
 
     address public tokenSaleAddress;
     address public tokenEscrowAddress;
     address public tokenVotingAddress;
     address public tokenMembershipAddress;
-    address public binkabiDepositAddress; // MultiSigWallet
-    address public binkabiTokenAddress;
+    address public privateTokenDepositAddress; // MultiSigWallet
+    address public privateTokenTokenAddress;
 
-    uint256 public constant binkabiDeposit = 100000000 * 10 ** decimals;
+    uint256 public constant privateTokenDeposit = 100000000 * 10 ** decimals;
 
     event TokenEscrow(address _buyer, address _seller, uint256 _amount_buyer, uint256 _amount_seller);
     event TokenBonus(address _member, uint256 _amount);
     event TokenPunish(address _member, uint256 _amount);
     event MembershipWithdrawal(address _member, uint256 _amount);
 
-    constructor(address _binkabiDepositAddress) public {
-        binkabiDepositAddress = _binkabiDepositAddress;
+    constructor(address _privateTokenDepositAddress) public {
+        privateTokenDepositAddress = _privateTokenDepositAddress;
 
-        balances[binkabiDepositAddress] = binkabiDeposit;
-        emit Transfer(0x0, binkabiDepositAddress, binkabiDeposit);
-        totalSupply_ = binkabiDeposit;
+        balances[privateTokenDepositAddress] = privateTokenDeposit;
+        emit Transfer(0x0, privateTokenDepositAddress, privateTokenDeposit);
+        totalSupply_ = privateTokenDeposit;
     }    
 
     function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {    
         if (_to == tokenMembershipAddress) {            
-            mbship = BinkabiMembership(tokenMembershipAddress);      
+            mbship = Membership(tokenMembershipAddress);      
             mbship.activeMember(msg.sender, _value, block.number);
         }
         if (_to == tokenEscrowAddress) {
-            escrowContract = BinkabiEscrow(binkabiTokenAddress);
+            escrowContract = TokenEscrow(privateTokenTokenAddress);
             escrowContract.updatePayment(msg.sender, _value);
         }
         return super.transfer(_to, _value);
@@ -53,8 +53,8 @@ contract BinkabiToken is StandardToken, Pausable{
         return super.balanceOf(_owner);
     }
 
-    function setBinkabiAddress(address _bnbAdress) public onlyOwner{
-        binkabiTokenAddress = _bnbAdress;        
+    function setPrivateTokenAddress(address _bnbAdress) public onlyOwner{
+        privateTokenTokenAddress = _bnbAdress;
     }
 
     // Setup Token Sale Smart Contract
@@ -69,10 +69,10 @@ contract BinkabiToken is StandardToken, Pausable{
         require(_value > 0);
         require(msg.sender == tokenSaleAddress);
 
-        balances[binkabiDepositAddress] = balances[binkabiDepositAddress].sub(_value);
+        balances[privateTokenDepositAddress] = balances[privateTokenDepositAddress].sub(_value);
         balances[_recipient] = balances[_recipient].add(_value);
 
-        emit Transfer(binkabiDepositAddress, _recipient, _value);
+        emit Transfer(privateTokenDepositAddress, _recipient, _value);
         return true;
     }
 
@@ -80,7 +80,7 @@ contract BinkabiToken is StandardToken, Pausable{
     function setTokenEscrowAddress(address _tokenEscrowAddress) public onlyOwner {
         if (_tokenEscrowAddress != address(0)) {
             tokenEscrowAddress = _tokenEscrowAddress;
-            escrowContract = BinkabiEscrow(_tokenEscrowAddress);
+            escrowContract = TokenEscrow(_tokenEscrowAddress);
         }
     }
     
@@ -107,7 +107,7 @@ contract BinkabiToken is StandardToken, Pausable{
     function setTokenMembershipAddress(address _tokenMembershipAddress) public onlyOwner {
         if (_tokenMembershipAddress != address(0)) {
             tokenMembershipAddress = _tokenMembershipAddress;
-            mbship = BinkabiMembership(_tokenMembershipAddress);
+            mbship = Membership(_tokenMembershipAddress);
         }
     }
     

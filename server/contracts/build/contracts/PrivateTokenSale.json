@@ -1,5 +1,5 @@
 {
-  "contractName": "BinkabiTokenSale",
+  "contractName": "PrivateTokenSale",
   "abi": [
     {
       "constant": true,
@@ -102,7 +102,7 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "binkabiDepositAddress",
+      "name": "privateTokenDepositAddress",
       "outputs": [
         {
           "name": "",
@@ -130,11 +130,11 @@
     {
       "inputs": [
         {
-          "name": "_binkabiTokenAddress",
+          "name": "_privateTokenTokenAddress",
           "type": "address"
         },
         {
-          "name": "_binkabiDepositAddress",
+          "name": "_privateTokenDepositAddress",
           "type": "address"
         }
       ],
@@ -166,7 +166,7 @@
           "type": "uint256"
         }
       ],
-      "name": "MintBinkabi",
+      "name": "MintPrivateToken",
       "type": "event"
     },
     {
@@ -183,7 +183,7 @@
           "type": "uint256"
         }
       ],
-      "name": "RefundBinkabi",
+      "name": "RefundPrivateToken",
       "type": "event"
     },
     {
@@ -200,7 +200,7 @@
           "type": "uint256"
         }
       ],
-      "name": "LogBinkabi",
+      "name": "LogPrivateToken",
       "type": "event"
     },
     {
@@ -220,12 +220,12 @@
   "deployedBytecode": "0x608060405260043610610099576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806324645c5a146100a55780633f4ba83a146100d05780634172d080146100ff5780635c975abb1461012a5780638456cb59146101595780638da5cb5b14610188578063b5f7f636146101df578063c0b029af1461020a578063f2fde38b14610261575b6100a333346102a4565b005b3480156100b157600080fd5b506100ba61049b565b6040518082815260200191505060405180910390f35b3480156100dc57600080fd5b506100e56104aa565b604051808215151515815260200191505060405180910390f35b34801561010b57600080fd5b5061011461056f565b6040518082815260200191505060405180910390f35b34801561013657600080fd5b5061013f610575565b604051808215151515815260200191505060405180910390f35b34801561016557600080fd5b5061016e610588565b604051808215151515815260200191505060405180910390f35b34801561019457600080fd5b5061019d61064f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101eb57600080fd5b506101f4610674565b6040518082815260200191505060405180910390f35b34801561021657600080fd5b5061021f61067a565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561026d57600080fd5b506102a2600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506106a0565b005b600080600080600060149054906101000a900460ff161515156102c657600080fd5b6102db6103e88661077590919063ffffffff16565b93506102fd6002546a295be96e640669720000006107b090919063ffffffff16565b9250600091506000905060008311151561031657600080fd5b8284111561034f578290506103486103e861033a85876107b090919063ffffffff16565b6107c990919063ffffffff16565b9150610353565b8390505b61035d86826107e4565b5080600260008282540192505081905550600082111561042a577f2be382812da806a790ce9d00eca8e8a0b5774085d46ee138c789a1aec6d1bc213383604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a13373ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f19350505050158015610428573d6000803e3d6000fd5b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050158015610492573d6000803e3d6000fd5b50505050505050565b6a295be96e6406697200000081565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561050757600080fd5b600060149054906101000a900460ff16151561052257600080fd5b60008060146101000a81548160ff0219169083151502179055507f7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b3360405160405180910390a16001905090565b6103e881565b600060149054906101000a900460ff1681565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156105e557600080fd5b600060149054906101000a900460ff1615151561060157600080fd5b6001600060146101000a81548160ff0219169083151502179055507f6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff62560405160405180910390a16001905090565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60025481565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156106fb57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151561077257806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b50565b600080600084141561078a57600091506107a9565b828402905082848281151561079b57fe5b041415156107a557fe5b8091505b5092915050565b60008282111515156107be57fe5b818303905092915050565b60008082848115156107d757fe5b0490508091505092915050565b60007fd5f1e8515fe0f39ae42b9f5698abc2b2d58d8813c5877723ff5c71ca2ae87c5d600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168484604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001935050505060405180910390a1600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166340c10f1984846040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561096c57600080fd5b505af1158015610980573d6000803e3d6000fd5b505050506040513d602081101561099657600080fd5b81019080805190602001909291905050509050929150505600a165627a7a72305820724ad51afccb9f39888b7cf2be9286bcaa1750261cb6077ffa2d3e998b2a81fe0029",
   "sourceMap": "152:2954:3:-;;;262:5:7;241:26;;;;;;;;;;;;;;;;;;;;422:1:3;390:33;;1285:203;8:9:-1;5:2;;;30:1;27;20:12;5:2;1285:203:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;287:10:6;279:5;;:18;;;;;;;;;;;;;;;;;;1404:20:3;1381:7;;:44;;;;;;;;;;;;;;;;;;1459:22;1435:21;;:46;;;;;;;;;;;;;;;;;;1285:203;;152:2954;;;;;;",
   "deployedSourceMap": "152:2954:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1710:35;1723:10;1735:9;1710:12;:35::i;:::-;152:2954;324:60;;8:9:-1;5:2;;;30:1;27;20:12;5:2;324:60:3;;;;;;;;;;;;;;;;;;;;;;;896:138:7;;8:9:-1;5:2;;;30:1;27;20:12;5:2;896:138:7;;;;;;;;;;;;;;;;;;;;;;;;;;;270:48:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;270:48:3;;;;;;;;;;;;;;;;;;;;;;;241:26:7;;8:9:-1;5:2;;;30:1;27;20:12;5:2;241:26:7;;;;;;;;;;;;;;;;;;;;;;;;;;;672:136;;8:9:-1;5:2;;;30:1;27;20:12;5:2;672:136:7;;;;;;;;;;;;;;;;;;;;;;;;;;;221:20:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:20:6;;;;;;;;;;;;;;;;;;;;;;;;;;;390:33:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;390:33:3;;;;;;;;;;;;;;;;;;;;;;;228:36;;8:9:-1;5:2;;;30:1;27;20:12;5:2;228:36:3;;;;;;;;;;;;;;;;;;;;;;;;;;;393:147:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;393:147:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;1758:1346:3;1966:14;2385:22;2454:21;2489:24;404:6:7;;;;;;;;;;;403:7;395:16;;;;;;;;1983:29:3;314:4;1983:6;:10;;:29;;;;:::i;:::-;1966:46;;2410:34;2429:14;;365:19;2410:18;;:34;;;;:::i;:::-;2385:59;;2478:1;2454:25;;2516:1;2489:28;;2553:1;2536:14;:18;2528:27;;;;;;;;2579:14;2570:6;:23;2566:224;;;2628:14;2608:34;;2672:51;314:4;2673:26;2684:14;2673:6;:10;;:26;;;;:::i;:::-;2672:32;;:51;;;;:::i;:::-;2656:67;;2566:224;;;2773:6;2754:25;;2566:224;2800:35;2804:12;2818:16;2800:3;:35::i;:::-;;2863:16;2845:14;;:34;;;;;;;;;;;2910:1;2894:13;:17;2890:140;;;2931:40;2945:10;2957:13;2931:40;;;;;;;;;;;;;;;;;;;;;;;;;;;;2985:10;:19;;:34;3005:13;2985:34;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2985:34:3;2890:140;3040:21;;;;;;;;;;;:30;;:41;3071:9;3040:41;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3040:41:3;1758:1346;;;;;;:::o;324:60::-;365:19;324:60;:::o;896:138:7:-;952:4;363:5:6;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;562:6:7;;;;;;;;;;;554:15;;;;;;;;977:5;968:6;;:14;;;;;;;;;;;;;;;;;;997:9;;;;;;;;;;1023:4;1016:11;;896:138;:::o;270:48:3:-;314:4;270:48;:::o;241:26:7:-;;;;;;;;;;;;;:::o;672:136::-;729:4;363:5:6;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;404:6:7;;;;;;;;;;;403:7;395:16;;;;;;;;754:4;745:6;;:13;;;;;;;;;;;;;;;;;;773:7;;;;;;;;;;797:4;790:11;;672:136;:::o;221:20:6:-;;;;;;;;;;;;;:::o;390:33:3:-;;;;:::o;228:36::-;;;;;;;;;;;;;:::o;393:147:6:-;363:5;;;;;;;;;;;349:19;;:10;:19;;;341:28;;;;;;;;489:1;469:22;;:8;:22;;;;465:69;;;515:8;507:5;;:16;;;;;;;;;;;;;;;;;;465:69;393:147;:::o;120:201:9:-;178:7;251:9;206:1;201;:6;197:45;;;230:1;223:8;;;;197:45;267:1;263;:5;251:17;;294:1;289;285;:5;;;;;;;;:10;278:18;;;;;;313:1;306:8;;120:201;;;;;;:::o;815:120::-;873:7;904:1;899;:6;;892:14;;;;;;927:1;923;:5;916:12;;815:120;;;;:::o;411:283::-;469:7;566:9;582:1;578;:5;;;;;;;;566:17;;686:1;679:8;;411:283;;;;;:::o;1494:173:3:-;1550:12;1579:43;1591:21;;;;;;;;;;;1614:2;1618:3;1579:43;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1639:7;;;;;;;;;;;:12;;;1652:2;1656:3;1639:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1639:21:3;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1639:21:3;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1639:21:3;;;;;;;;;;;;;;;;1632:28;;1494:173;;;;:::o",
-  "source": "pragma solidity ^0.4.20;\nimport './interfaces/Pausable.sol';\nimport './libs/SafeMath.sol';\nimport './libs/SafeMath.sol';\nimport './BinkabiToken.sol';\n\n\ncontract BinkabiTokenSale is Pausable {\n    using SafeMath for uint256;\n    address public binkabiDepositAddress;\n    uint256 public constant tokenExchangeRate = 1000;\n    uint256 public constant totalTokenSale = 50000000 * 10 ** 18;\n    uint256 public totalTokenSold = 0;\n\n\n//    uint256 public constant preSaleTime = 1527465600; // 2018-05-28 00:00:00\n//    uint256 public constant preSaleEnd = 1527552000; // 2018-05-29 00:00:00\n//    uint256 public constant preSaleBonus = 10; // Bonus 10% pre sale\n//    uint256 public constant preSaleMinContribution = 50 ether;\n//    uint256 public constant preSaleMaxContribution = 100 ether;\n//\n//\n//    uint256 public constant publicSaleTime = 1527638400; // 2018-05-30 00:00:00\n//    uint256 public constant publicSaleEnd = 1590796800; // 2020-05-30 00:00:00\n//    uint256 public constant publicSaleminContribution = 0.5 ether;\n//    uint256 public constant publicSalemaxContribution = 10 ether;\n\n    BinkabiToken binkabi;\n\n    event MintBinkabi(address from, address to, uint256 val);\n    event RefundBinkabi(address to, uint256 val);\n    event LogBinkabi(address add, uint256 val);\n\n    constructor(BinkabiToken _binkabiTokenAddress, address _binkabiDepositAddress) public {\n        binkabi = BinkabiToken(_binkabiTokenAddress);\n        binkabiDepositAddress = _binkabiDepositAddress;\n    }\n\n    function buy(address to, uint256 val) internal returns (bool success) {\n        emit MintBinkabi(binkabiDepositAddress, to, val);\n        return binkabi.mint(to, val);\n    }\n\n    function () public payable {\n        createTokens(msg.sender, msg.value);\n    }\n\n    function createTokens(address _beneficiary, uint256 _value) internal whenNotPaused {\n//         require((now >= preSaleTime && now <= preSaleEnd) || (now >= publicSaleTime && now <= publicSaleEnd));\n\n        uint256 tokens = _value.mul(tokenExchangeRate);\n//         if (now >= preSaleTime && now <= preSaleEnd) {\n//             require(_value >= preSaleMinContribution && _value <= preSaleMaxContribution);\n//             tokens = tokens.mul((100 + preSaleBonus) / 100);\n//         }\n//\n//         else {\n//             require(_value >= publicSaleminContribution && _value <= publicSalemaxContribution);\n//         }\n        uint256 tokenAvailable = totalTokenSale.sub(totalTokenSold);\n        uint256 etherToRefund = 0;\n        uint256 currentTokenSell = 0;\n\n        require(tokenAvailable > 0);\n\n        if (tokens > tokenAvailable){\n            currentTokenSell  = tokenAvailable;\n            etherToRefund = (tokens.sub(tokenAvailable)).div(tokenExchangeRate);\n        } else {\n            currentTokenSell = tokens;\n        }\n\n        buy(_beneficiary, currentTokenSell);\n        totalTokenSold += currentTokenSell;\n\n        if (etherToRefund > 0){\n            emit RefundBinkabi(msg.sender, etherToRefund);\n            msg.sender.transfer(etherToRefund);\n        }\n\n        binkabiDepositAddress.transfer(msg.value);\n        return;\n    }\n}\n\n\n\n",
-  "sourcePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/BinkabiTokenSale.sol",
+  "source": "pragma solidity ^0.4.20;\nimport './interfaces/Pausable.sol';\nimport './libs/SafeMath.sol';\nimport './libs/SafeMath.sol';\nimport './PrivateToken.sol';\n\n\ncontract PrivateTokenSale is Pausable {\n    using SafeMath for uint256;\n    address public privateTokenDepositAddress;\n    uint256 public constant tokenExchangeRate = 1000;\n    uint256 public constant totalTokenSale = 50000000 * 10 ** 18;\n    uint256 public totalTokenSold = 0;\n\n\n//    uint256 public constant preSaleTime = 1527465600; // 2018-05-28 00:00:00\n//    uint256 public constant preSaleEnd = 1527552000; // 2018-05-29 00:00:00\n//    uint256 public constant preSaleBonus = 10; // Bonus 10% pre sale\n//    uint256 public constant preSaleMinContribution = 50 ether;\n//    uint256 public constant preSaleMaxContribution = 100 ether;\n//\n//\n//    uint256 public constant publicSaleTime = 1527638400; // 2018-05-30 00:00:00\n//    uint256 public constant publicSaleEnd = 1590796800; // 2020-05-30 00:00:00\n//    uint256 public constant publicSaleminContribution = 0.5 ether;\n//    uint256 public constant publicSalemaxContribution = 10 ether;\n\n    PrivateToken privateToken;\n\n    event MintPrivateToken(address from, address to, uint256 val);\n    event RefundPrivateToken(address to, uint256 val);\n    event LogPrivateToken(address add, uint256 val);\n\n    constructor(PrivateToken _privateTokenTokenAddress, address _privateTokenDepositAddress) public {\n        privateToken = PrivateToken(_privateTokenTokenAddress);\n        privateTokenDepositAddress = _privateTokenDepositAddress;\n    }\n\n    function buy(address to, uint256 val) internal returns (bool success) {\n        emit MintPrivateToken(privateTokenDepositAddress, to, val);\n        return privateToken.mint(to, val);\n    }\n\n    function () public payable {\n        createTokens(msg.sender, msg.value);\n    }\n\n    function createTokens(address _beneficiary, uint256 _value) internal whenNotPaused {\n//         require((now >= preSaleTime && now <= preSaleEnd) || (now >= publicSaleTime && now <= publicSaleEnd));\n\n        uint256 tokens = _value.mul(tokenExchangeRate);\n//         if (now >= preSaleTime && now <= preSaleEnd) {\n//             require(_value >= preSaleMinContribution && _value <= preSaleMaxContribution);\n//             tokens = tokens.mul((100 + preSaleBonus) / 100);\n//         }\n//\n//         else {\n//             require(_value >= publicSaleminContribution && _value <= publicSalemaxContribution);\n//         }\n        uint256 tokenAvailable = totalTokenSale.sub(totalTokenSold);\n        uint256 etherToRefund = 0;\n        uint256 currentTokenSell = 0;\n\n        require(tokenAvailable > 0);\n\n        if (tokens > tokenAvailable){\n            currentTokenSell  = tokenAvailable;\n            etherToRefund = (tokens.sub(tokenAvailable)).div(tokenExchangeRate);\n        } else {\n            currentTokenSell = tokens;\n        }\n\n        buy(_beneficiary, currentTokenSell);\n        totalTokenSold += currentTokenSell;\n\n        if (etherToRefund > 0){\n            emit RefundPrivateToken(msg.sender, etherToRefund);\n            msg.sender.transfer(etherToRefund);\n        }\n\n        privateTokenDepositAddress.transfer(msg.value);\n        return;\n    }\n}\n\n\n\n",
+  "sourcePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/PrivateTokenSale.sol",
   "ast": {
-    "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/BinkabiTokenSale.sol",
+    "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/PrivateTokenSale.sol",
     "exportedSymbols": {
-      "BinkabiTokenSale": [
+      "PrivateTokenSale": [
         1593
       ]
     },
@@ -244,7 +244,7 @@
         "src": "0:24:3"
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Pausable.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Pausable.sol",
         "file": "./interfaces/Pausable.sol",
         "id": 1397,
         "nodeType": "ImportDirective",
@@ -255,7 +255,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/libs/SafeMath.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/libs/SafeMath.sol",
         "file": "./libs/SafeMath.sol",
         "id": 1398,
         "nodeType": "ImportDirective",
@@ -266,7 +266,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/libs/SafeMath.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/libs/SafeMath.sol",
         "file": "./libs/SafeMath.sol",
         "id": 1399,
         "nodeType": "ImportDirective",
@@ -277,8 +277,8 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/BinkabiToken.sol",
-        "file": "./BinkabiToken.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/PrivateToken.sol",
+        "file": "./PrivateToken.sol",
         "id": 1400,
         "nodeType": "ImportDirective",
         "scope": 1594,
@@ -321,7 +321,7 @@
           2096,
           2028
         ],
-        "name": "BinkabiTokenSale",
+        "name": "PrivateTokenSale",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
@@ -354,7 +354,7 @@
           {
             "constant": false,
             "id": 1407,
-            "name": "binkabiDepositAddress",
+            "name": "privateTokenDepositAddress",
             "nodeType": "VariableDeclaration",
             "scope": 1593,
             "src": "228:36:3",
@@ -583,26 +583,26 @@
           {
             "constant": false,
             "id": 1422,
-            "name": "binkabi",
+            "name": "privateToken",
             "nodeType": "VariableDeclaration",
             "scope": 1593,
             "src": "1097:20:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-              "typeString": "contract BinkabiToken"
+              "typeIdentifier": "t_contract$_PrivateToken_$1394",
+              "typeString": "contract PrivateToken"
             },
             "typeName": {
               "contractScope": null,
               "id": 1421,
-              "name": "BinkabiToken",
+              "name": "PrivateToken",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 1394,
               "src": "1097:12:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                "typeString": "contract BinkabiToken"
+                "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                "typeString": "contract PrivateToken"
               }
             },
             "value": null,
@@ -612,7 +612,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 1430,
-            "name": "MintBinkabi",
+            "name": "MintPrivateToken",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 1429,
@@ -708,7 +708,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 1436,
-            "name": "RefundBinkabi",
+            "name": "RefundPrivateToken",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 1435,
@@ -777,7 +777,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 1442,
-            "name": "LogBinkabi",
+            "name": "LogPrivateToken",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 1441,
@@ -859,14 +859,14 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 1449,
-                      "name": "binkabi",
+                      "name": "privateToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1422,
                       "src": "1381:7:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                        "typeString": "contract BinkabiToken"
+                        "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                        "typeString": "contract PrivateToken"
                       }
                     },
                     "nodeType": "Assignment",
@@ -877,33 +877,33 @@
                         {
                           "argumentTypes": null,
                           "id": 1451,
-                          "name": "_binkabiTokenAddress",
+                          "name": "_privateTokenTokenAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1444,
                           "src": "1404:20:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                            "typeString": "contract BinkabiToken"
+                            "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                            "typeString": "contract PrivateToken"
                           }
                         }
                       ],
                       "expression": {
                         "argumentTypes": [
                           {
-                            "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                            "typeString": "contract BinkabiToken"
+                            "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                            "typeString": "contract PrivateToken"
                           }
                         ],
                         "id": 1450,
-                        "name": "BinkabiToken",
+                        "name": "PrivateToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1394,
                         "src": "1391:12:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_BinkabiToken_$1394_$",
-                          "typeString": "type(contract BinkabiToken)"
+                          "typeIdentifier": "t_type$_t_contract$_PrivateToken_$1394_$",
+                          "typeString": "type(contract PrivateToken)"
                         }
                       },
                       "id": 1452,
@@ -916,14 +916,14 @@
                       "nodeType": "FunctionCall",
                       "src": "1391:34:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                        "typeString": "contract BinkabiToken"
+                        "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                        "typeString": "contract PrivateToken"
                       }
                     },
                     "src": "1381:44:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                      "typeString": "contract BinkabiToken"
+                      "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                      "typeString": "contract PrivateToken"
                     }
                   },
                   "id": 1454,
@@ -941,7 +941,7 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 1455,
-                      "name": "binkabiDepositAddress",
+                      "name": "privateTokenDepositAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1407,
@@ -956,7 +956,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "id": 1456,
-                      "name": "_binkabiDepositAddress",
+                      "name": "_privateTokenDepositAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1446,
@@ -993,26 +993,26 @@
                 {
                   "constant": false,
                   "id": 1444,
-                  "name": "_binkabiTokenAddress",
+                  "name": "_privateTokenTokenAddress",
                   "nodeType": "VariableDeclaration",
                   "scope": 1460,
                   "src": "1297:33:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                    "typeString": "contract BinkabiToken"
+                    "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                    "typeString": "contract PrivateToken"
                   },
                   "typeName": {
                     "contractScope": null,
                     "id": 1443,
-                    "name": "BinkabiToken",
+                    "name": "PrivateToken",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 1394,
                     "src": "1297:12:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                      "typeString": "contract BinkabiToken"
+                      "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                      "typeString": "contract PrivateToken"
                     }
                   },
                   "value": null,
@@ -1021,7 +1021,7 @@
                 {
                   "constant": false,
                   "id": 1446,
-                  "name": "_binkabiDepositAddress",
+                  "name": "_privateTokenDepositAddress",
                   "nodeType": "VariableDeclaration",
                   "scope": 1460,
                   "src": "1332:30:3",
@@ -1073,7 +1073,7 @@
                       {
                         "argumentTypes": null,
                         "id": 1470,
-                        "name": "binkabiDepositAddress",
+                        "name": "privateTokenDepositAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1407,
@@ -1126,7 +1126,7 @@
                         }
                       ],
                       "id": 1469,
-                      "name": "MintBinkabi",
+                      "name": "MintPrivateToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1430,
@@ -1199,14 +1199,14 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 1475,
-                        "name": "binkabi",
+                        "name": "privateToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1422,
                         "src": "1639:7:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                          "typeString": "contract BinkabiToken"
+                          "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                          "typeString": "contract PrivateToken"
                         }
                       },
                       "id": 1476,
@@ -2458,7 +2458,7 @@
                               }
                             ],
                             "id": 1567,
-                            "name": "RefundBinkabi",
+                            "name": "RefundPrivateToken",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1436,
@@ -2619,7 +2619,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 1583,
-                        "name": "binkabiDepositAddress",
+                        "name": "privateTokenDepositAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1407,
@@ -2778,9 +2778,9 @@
     "src": "0:3110:3"
   },
   "legacyAST": {
-    "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/BinkabiTokenSale.sol",
+    "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/PrivateTokenSale.sol",
     "exportedSymbols": {
-      "BinkabiTokenSale": [
+      "PrivateTokenSale": [
         1593
       ]
     },
@@ -2799,7 +2799,7 @@
         "src": "0:24:3"
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/interfaces/Pausable.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/interfaces/Pausable.sol",
         "file": "./interfaces/Pausable.sol",
         "id": 1397,
         "nodeType": "ImportDirective",
@@ -2810,7 +2810,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/libs/SafeMath.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/libs/SafeMath.sol",
         "file": "./libs/SafeMath.sol",
         "id": 1398,
         "nodeType": "ImportDirective",
@@ -2821,7 +2821,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/libs/SafeMath.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/libs/SafeMath.sol",
         "file": "./libs/SafeMath.sol",
         "id": 1399,
         "nodeType": "ImportDirective",
@@ -2832,8 +2832,8 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/vagrant/projects/tomo/binkabi-ico/server/contracts/contracts/BinkabiToken.sol",
-        "file": "./BinkabiToken.sol",
+        "absolutePath": "/home/vagrant/projects/tomo/privateToken-ico/server/contracts/contracts/PrivateToken.sol",
+        "file": "./PrivateToken.sol",
         "id": 1400,
         "nodeType": "ImportDirective",
         "scope": 1594,
@@ -2876,7 +2876,7 @@
           2096,
           2028
         ],
-        "name": "BinkabiTokenSale",
+        "name": "PrivateTokenSale",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
@@ -2909,7 +2909,7 @@
           {
             "constant": false,
             "id": 1407,
-            "name": "binkabiDepositAddress",
+            "name": "privateTokenDepositAddress",
             "nodeType": "VariableDeclaration",
             "scope": 1593,
             "src": "228:36:3",
@@ -3138,26 +3138,26 @@
           {
             "constant": false,
             "id": 1422,
-            "name": "binkabi",
+            "name": "privateToken",
             "nodeType": "VariableDeclaration",
             "scope": 1593,
             "src": "1097:20:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-              "typeString": "contract BinkabiToken"
+              "typeIdentifier": "t_contract$_PrivateToken_$1394",
+              "typeString": "contract PrivateToken"
             },
             "typeName": {
               "contractScope": null,
               "id": 1421,
-              "name": "BinkabiToken",
+              "name": "PrivateToken",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 1394,
               "src": "1097:12:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                "typeString": "contract BinkabiToken"
+                "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                "typeString": "contract PrivateToken"
               }
             },
             "value": null,
@@ -3167,7 +3167,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 1430,
-            "name": "MintBinkabi",
+            "name": "MintPrivateToken",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 1429,
@@ -3263,7 +3263,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 1436,
-            "name": "RefundBinkabi",
+            "name": "RefundPrivateToken",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 1435,
@@ -3332,7 +3332,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 1442,
-            "name": "LogBinkabi",
+            "name": "LogPrivateToken",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 1441,
@@ -3414,14 +3414,14 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 1449,
-                      "name": "binkabi",
+                      "name": "privateToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1422,
                       "src": "1381:7:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                        "typeString": "contract BinkabiToken"
+                        "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                        "typeString": "contract PrivateToken"
                       }
                     },
                     "nodeType": "Assignment",
@@ -3432,33 +3432,33 @@
                         {
                           "argumentTypes": null,
                           "id": 1451,
-                          "name": "_binkabiTokenAddress",
+                          "name": "_privateTokenTokenAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1444,
                           "src": "1404:20:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                            "typeString": "contract BinkabiToken"
+                            "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                            "typeString": "contract PrivateToken"
                           }
                         }
                       ],
                       "expression": {
                         "argumentTypes": [
                           {
-                            "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                            "typeString": "contract BinkabiToken"
+                            "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                            "typeString": "contract PrivateToken"
                           }
                         ],
                         "id": 1450,
-                        "name": "BinkabiToken",
+                        "name": "PrivateToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1394,
                         "src": "1391:12:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_BinkabiToken_$1394_$",
-                          "typeString": "type(contract BinkabiToken)"
+                          "typeIdentifier": "t_type$_t_contract$_PrivateToken_$1394_$",
+                          "typeString": "type(contract PrivateToken)"
                         }
                       },
                       "id": 1452,
@@ -3471,14 +3471,14 @@
                       "nodeType": "FunctionCall",
                       "src": "1391:34:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                        "typeString": "contract BinkabiToken"
+                        "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                        "typeString": "contract PrivateToken"
                       }
                     },
                     "src": "1381:44:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                      "typeString": "contract BinkabiToken"
+                      "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                      "typeString": "contract PrivateToken"
                     }
                   },
                   "id": 1454,
@@ -3496,7 +3496,7 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 1455,
-                      "name": "binkabiDepositAddress",
+                      "name": "privateTokenDepositAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1407,
@@ -3511,7 +3511,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "id": 1456,
-                      "name": "_binkabiDepositAddress",
+                      "name": "_privateTokenDepositAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1446,
@@ -3548,26 +3548,26 @@
                 {
                   "constant": false,
                   "id": 1444,
-                  "name": "_binkabiTokenAddress",
+                  "name": "_privateTokenTokenAddress",
                   "nodeType": "VariableDeclaration",
                   "scope": 1460,
                   "src": "1297:33:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                    "typeString": "contract BinkabiToken"
+                    "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                    "typeString": "contract PrivateToken"
                   },
                   "typeName": {
                     "contractScope": null,
                     "id": 1443,
-                    "name": "BinkabiToken",
+                    "name": "PrivateToken",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 1394,
                     "src": "1297:12:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                      "typeString": "contract BinkabiToken"
+                      "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                      "typeString": "contract PrivateToken"
                     }
                   },
                   "value": null,
@@ -3576,7 +3576,7 @@
                 {
                   "constant": false,
                   "id": 1446,
-                  "name": "_binkabiDepositAddress",
+                  "name": "_privateTokenDepositAddress",
                   "nodeType": "VariableDeclaration",
                   "scope": 1460,
                   "src": "1332:30:3",
@@ -3628,7 +3628,7 @@
                       {
                         "argumentTypes": null,
                         "id": 1470,
-                        "name": "binkabiDepositAddress",
+                        "name": "privateTokenDepositAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1407,
@@ -3681,7 +3681,7 @@
                         }
                       ],
                       "id": 1469,
-                      "name": "MintBinkabi",
+                      "name": "MintPrivateToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1430,
@@ -3754,14 +3754,14 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 1475,
-                        "name": "binkabi",
+                        "name": "privateToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1422,
                         "src": "1639:7:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_BinkabiToken_$1394",
-                          "typeString": "contract BinkabiToken"
+                          "typeIdentifier": "t_contract$_PrivateToken_$1394",
+                          "typeString": "contract PrivateToken"
                         }
                       },
                       "id": 1476,
@@ -5013,7 +5013,7 @@
                               }
                             ],
                             "id": 1567,
-                            "name": "RefundBinkabi",
+                            "name": "RefundPrivateToken",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1436,
@@ -5174,7 +5174,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 1583,
-                        "name": "binkabiDepositAddress",
+                        "name": "privateTokenDepositAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 1407,
@@ -5358,7 +5358,7 @@
               "type": "uint256"
             }
           ],
-          "name": "MintBinkabi",
+          "name": "MintPrivateToken",
           "type": "event"
         },
         "0x2be382812da806a790ce9d00eca8e8a0b5774085d46ee138c789a1aec6d1bc21": {
@@ -5375,7 +5375,7 @@
               "type": "uint256"
             }
           ],
-          "name": "RefundBinkabi",
+          "name": "RefundPrivateToken",
           "type": "event"
         },
         "0x5e099920d001fdee1617511a831fa2ca9512e6df1945f17b4fc249759588dcc6": {
@@ -5392,7 +5392,7 @@
               "type": "uint256"
             }
           ],
-          "name": "LogBinkabi",
+          "name": "LogPrivateToken",
           "type": "event"
         },
         "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
@@ -5433,7 +5433,7 @@
               "type": "uint256"
             }
           ],
-          "name": "MintBinkabi",
+          "name": "MintPrivateToken",
           "type": "event"
         },
         "0x2be382812da806a790ce9d00eca8e8a0b5774085d46ee138c789a1aec6d1bc21": {
@@ -5450,7 +5450,7 @@
               "type": "uint256"
             }
           ],
-          "name": "RefundBinkabi",
+          "name": "RefundPrivateToken",
           "type": "event"
         },
         "0x5e099920d001fdee1617511a831fa2ca9512e6df1945f17b4fc249759588dcc6": {
@@ -5467,7 +5467,7 @@
               "type": "uint256"
             }
           ],
-          "name": "LogBinkabi",
+          "name": "LogPrivateToken",
           "type": "event"
         },
         "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
@@ -5508,7 +5508,7 @@
               "type": "uint256"
             }
           ],
-          "name": "MintBinkabi",
+          "name": "MintPrivateToken",
           "type": "event"
         },
         "0x2be382812da806a790ce9d00eca8e8a0b5774085d46ee138c789a1aec6d1bc21": {
@@ -5525,7 +5525,7 @@
               "type": "uint256"
             }
           ],
-          "name": "RefundBinkabi",
+          "name": "RefundPrivateToken",
           "type": "event"
         },
         "0x5e099920d001fdee1617511a831fa2ca9512e6df1945f17b4fc249759588dcc6": {
@@ -5542,7 +5542,7 @@
               "type": "uint256"
             }
           ],
-          "name": "LogBinkabi",
+          "name": "LogPrivateToken",
           "type": "event"
         },
         "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
@@ -5595,7 +5595,7 @@
               "type": "uint256"
             }
           ],
-          "name": "MintBinkabi",
+          "name": "MintPrivateToken",
           "type": "event"
         },
         "0x2be382812da806a790ce9d00eca8e8a0b5774085d46ee138c789a1aec6d1bc21": {
@@ -5612,7 +5612,7 @@
               "type": "uint256"
             }
           ],
-          "name": "RefundBinkabi",
+          "name": "RefundPrivateToken",
           "type": "event"
         },
         "0x5e099920d001fdee1617511a831fa2ca9512e6df1945f17b4fc249759588dcc6": {
@@ -5629,7 +5629,7 @@
               "type": "uint256"
             }
           ],
-          "name": "LogBinkabi",
+          "name": "LogPrivateToken",
           "type": "event"
         },
         "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
